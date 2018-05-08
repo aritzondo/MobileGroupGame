@@ -3,19 +3,18 @@ package com.badlogic.drop;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-
 import java.util.ArrayList;
 
-public class MainMenuScreen extends GameScreen {
+public class Minigame1 extends GameScreen {
 
     WorldController controller;
     WorldRenderer renderer;
     ArrayList<GameObject> objects = new ArrayList<GameObject>();
 
-    public MainMenuScreen(Game game) {
+    public Minigame1(Game game) {
         super(game);
         GameObject test = new GameObject("test",0,0,1,1);
-        test.addAnimation(Assets.getInstance().playerShoot);
+        test.addAnimation(Assets.getInstance().playerIdle);
         test.setLoop(true,0);
         objects.add(test);
     }
@@ -35,8 +34,8 @@ public class MainMenuScreen extends GameScreen {
         }
         renderer.render();
 
-        if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY) || Gdx.input.justTouched()) {
-            game.setScreen(new Minigame1(game));
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY) || Gdx.input.justTouched()) {
+            game.setScreen(new MainMenuScreen(game));
         }
     }
 

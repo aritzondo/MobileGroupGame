@@ -7,8 +7,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 public class WorldController implements InputProcessor {
 
     private OrthographicCamera camera;
-    private CameraHelper c_helper;
-
 
     WorldController(){
 
@@ -17,10 +15,10 @@ public class WorldController implements InputProcessor {
     void setCamera(OrthographicCamera cam){
 
         camera=cam;
-        c_helper = new CameraHelper(camera);
     }
 
     void update(float delta){
+
     }
 
    @Override

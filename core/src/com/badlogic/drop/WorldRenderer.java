@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.util.ArrayList;
+
 
 public class WorldRenderer {
     //private
@@ -14,14 +16,15 @@ public class WorldRenderer {
     private SpriteBatch batch;
     private WorldController controller;
     private BitmapFont font;
+    private ArrayList<GameObject> objects;
 
-    public WorldRenderer(WorldController wd){
+    public WorldRenderer(WorldController wd, ArrayList<GameObject> objects){
         controller=wd;
+        this.objects = objects;
         init();
         controller.setCamera(camera);
         font = new BitmapFont();
     }
-
     private void init(){
         // create the camera and the SpriteBatch
         camera = new OrthographicCamera();
@@ -36,15 +39,11 @@ public class WorldRenderer {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
+        for (GameObject object:objects) {
+            object.render(batch);
+        }
         batch.end();
 
-    }
-
-    void renderPause(){
-        batch.setProjectionMatrix(camera.combined);
-        batch.begin();
-        font.draw(batch,"Press the screen to resume",0,0);
-        batch.end();
     }
 
     public void resize(int width, int height){
