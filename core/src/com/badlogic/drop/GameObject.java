@@ -147,9 +147,7 @@ public class GameObject {
     }
 
     public boolean isPointInBounds(Vector2 point){
-        return (   point.x >= origin.x-bounds.x/2
-                && point.x <= origin.x+bounds.x/2
-                && point.y >= origin.y-bounds.y/2
-                && point.y <= origin.y+bounds.y/2);
+
+        return bounds.contains(point.x,point.y);
     }
 }

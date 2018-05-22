@@ -17,7 +17,7 @@ public class Assets {
     *private
      */
     //single instance of the class
-    private static final Assets instance = new Assets();
+    private static Assets instance = null;
     // Constant rows and columns of the sprite sheet
     private static final int FRAME_COLS = 6, FRAME_ROWS = 5;
     private static final int PLAYER_COLS = 3, PLAYER_ROWS = 2;
@@ -50,6 +50,11 @@ public class Assets {
     }
 
     public static Assets getInstance(){
+
+        if(instance == null){
+            instance = new Assets();
+        }
+
         return instance;
     }
 
@@ -113,7 +118,7 @@ public class Assets {
     private void loadPlayerShoot(){
         playerShootSheet = new Texture(Gdx.files.internal("shoot.png"));
 
-    TextureRegion[][] tmp = TextureRegion.split(playerShootSheet,playerShootSheet.getWidth() / 2,playerShootSheet .getHeight());
+        TextureRegion[][] tmp = TextureRegion.split(playerShootSheet,playerShootSheet.getWidth() / 2,playerShootSheet .getHeight());
 
         TextureRegion[] playerShootFrames = new TextureRegion[2];
         for (int i = 0; i < 2; i++) {
