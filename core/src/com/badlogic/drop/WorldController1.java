@@ -1,14 +1,12 @@
 package com.badlogic.drop;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 
 /**
  * Created by aritz on 16/05/2018.
  */
 
-public class WorldController1 extends WorldController{
+public class WorldController1 extends WorldController {
 
     private Minigame1 mGame;
 
@@ -45,70 +43,16 @@ public class WorldController1 extends WorldController{
     }
 
     @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-
-        Vector3 touchPos3 = camera.unproject(new Vector3(screenX, screenY, 0));
-        Vector2 touchPos = new Vector2(touchPos3.x,touchPos3.y);
-        //check if fruit is selected
-        for (GameObject object : mGame.objects ) {
-            if(object.isPointInBounds(touchPos)){
-                if(object.getClass() == Restaurant_Food.class){
-                    isFoodSelected = true;
-                    foodSlected = (Restaurant_Food) object;
-                }
-            }
-        }
-
-        return true;
-    }
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {return false;}
 
     @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-
-        if(isFoodSelected){
-            Vector3 touchPos3 = camera.unproject(new Vector3(screenX, screenY, 0));
-            Vector2 touchPos = new Vector2(touchPos3.x,touchPos3.y);
-            //check if the fruit is above a table
-            for (GameObject object : mGame.objects ) {
-                if(object.isPointInBounds(touchPos)){
-                    if(object.getClass() == Restaurant_Table.class){
-                        isFoodSelected = false;
-                        foodSlected.dropFood((Restaurant_Table)object);
-                        return true;
-                    }
-                    else{
-                        break;
-                    }
-                }
-            }
-        }
-
-        isFoodSelected = false;
-        foodSlected.dropFood();
-
-        return true;
-    }
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {return false;}
 
     @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-
-        Vector3 touchPos3 = camera.unproject(new Vector3(screenX, screenY, 0));
-        Vector2 touchPos = new Vector2(touchPos3.x,touchPos3.y);
-
-        if(isFoodSelected){
-            foodSlected.position = touchPos;
-        }
-
-        return true;
-    }
+    public boolean touchDragged(int screenX, int screenY, int pointer) {return false;}
 
     @Override
-    public boolean mouseMoved(int screenX, int screenY) {
-        Vector3 touchPos3 = camera.unproject(new Vector3(screenX, screenY, 0));
-        Vector2 touchPos = new Vector2(touchPos3.x,touchPos3.y);
-        System.out.printf("Mouse %d, %d\n",touchPos.x,touchPos.y);
-        return true;
-    }
+    public boolean mouseMoved(int screenX, int screenY) {return false;}
 
     @Override
     public boolean scrolled(int amount) {

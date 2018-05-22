@@ -22,14 +22,14 @@ public class GameObject {
     protected Vector2 origin;
     protected Rectangle bounds;
 
-    GameObject(String name,float x, float y){
+    public GameObject(String name,float x, float y){
         this.name = name;
         position = new Vector2(x,y);
         origin = position;
         speed = Vector2.Zero;
     }
 
-    GameObject(String name, float x, float y, float width, float height){
+    public GameObject(String name, float x, float y, float width, float height){
         this.name = name;
         position = new Vector2(x,y);
         dimension = new Vector2(width,height);
@@ -39,7 +39,7 @@ public class GameObject {
         speed = Vector2.Zero;
     }
 
-    GameObject(String name, float x, float y, float width, float height, float centerX, float centerY){
+    public GameObject(String name, float x, float y, float width, float height, float centerX, float centerY){
         this.name = name;
         position = new Vector2(x,y);
         dimension = new Vector2(width,height);

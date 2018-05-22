@@ -11,7 +11,7 @@ import com.badlogic.gdx.Input;
 public class Minigame2 extends Minigame {
     public Minigame2(Game game) {
         super(game);
-        Restaurant_Food test = new Restaurant_Food("test",0,0,1,1);
+        GameObject test = new GameObject("test",0,0,1,1);
         System.out.printf("Ship in %f, %f\n", test.getX(),test.getY());
         test.addAnimation(Assets.getInstance().walkAnimation);
         test.setLoop(true,0);

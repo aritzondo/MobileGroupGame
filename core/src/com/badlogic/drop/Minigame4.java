@@ -11,24 +11,24 @@ import com.badlogic.gdx.Input;
 public class Minigame4 extends Minigame {
     public Minigame4(Game game) {
         super(game);
-        Restaurant_Food test = new Restaurant_Food("test",0,0,1,1);
-        System.out.printf("Ship in %f, %f\n", test.getX(),test.getY());
-        test.addAnimation(Assets.getInstance().playerRight);
-        test.setLoop(true,0);
+        Restaurant_Food test = new Restaurant_Food("test", 0, 0, 1, 1);
+        System.out.printf("Ship in %f, %f\n", test.getX(), test.getY());
+        test.addAnimation(Assets.getInstance().playerIdle);
+        test.setLoop(true, 0);
         objects.add(test);
     }
 
     @Override
-    public void show () {
+    public void show() {
         Gdx.app.debug("Game", "main menu created");
         controller = new WorldController4(this);
-        renderer = new WorldRenderer4(controller,objects);
+        renderer = new WorldRenderer4(controller, objects);
     }
 
     @Override
-    public void render (float delta) {
+    public void render(float delta) {
         controller.update(delta);
-        for(GameObject object : objects){
+        for (GameObject object : objects) {
             object.update(delta);
         }
         renderer.render();
@@ -39,7 +39,8 @@ public class Minigame4 extends Minigame {
     }
 
     @Override
-    public void hide () {
+    public void hide() {
+        Gdx.app.debug("Game", "dispose main menu");
         renderer.dispose();
     }
 }
