@@ -4,7 +4,7 @@ public class AudioManager {
     private static AudioManager instance = new AudioManager();
     private static boolean mute = false;
 
-    public enum Constants{
+    public enum Sounds{
     }
 
     private AudioManager(){
@@ -15,9 +15,9 @@ public class AudioManager {
         return instance;
     }
 
-    public void play(Constants cons){
+    public void play(Sounds sound){
         if(!mute){
-            switch(cons){
+            switch(sound){
                 default:
                     break;
             }

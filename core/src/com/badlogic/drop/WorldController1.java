@@ -3,13 +3,17 @@ package com.badlogic.drop;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
+/**
+ * Created by aritz on 16/05/2018.
+ */
 
-public class WorldController implements InputProcessor {
+public class WorldController1 extends WorldController {
 
     private OrthographicCamera camera;
+    Minigame1 mGame;
 
-    WorldController(){
-
+    WorldController1(Minigame1 game){
+        mGame = game;
     }
 
     void setCamera(OrthographicCamera cam){
@@ -18,10 +22,16 @@ public class WorldController implements InputProcessor {
     }
 
     void update(float delta){
+
+        //check if fruit is selected
+        for (GameObject object : mGame.objects ) {
+
+        }
+
         camera.update();
     }
 
-   @Override
+    @Override
     public boolean keyDown(int keycode) {
         return false;
     }
@@ -59,3 +69,4 @@ public class WorldController implements InputProcessor {
         return false;
     }
 }
+

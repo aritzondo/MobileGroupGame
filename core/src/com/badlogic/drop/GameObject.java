@@ -145,4 +145,11 @@ public class GameObject {
     public void setSpeed(Vector2 newSpeed){
         speed = newSpeed;
     }
+
+    public boolean isPointInBounds(Vector2 point){
+        return (   point.x >= origin.x-bounds.x/2
+                && point.x <= origin.x+bounds.x/2
+                && point.y >= origin.y-bounds.y/2
+                && point.y <= origin.y+bounds.y/2);
+    }
 }

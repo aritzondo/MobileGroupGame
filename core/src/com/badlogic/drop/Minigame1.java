@@ -3,13 +3,8 @@ package com.badlogic.drop;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import java.util.ArrayList;
 
-public class Minigame1 extends GameScreen {
-
-    WorldController controller;
-    WorldRenderer renderer;
-    ArrayList<GameObject> objects = new ArrayList<GameObject>();
+public class Minigame1 extends Minigame {
 
     public Minigame1(Game game) {
         super(game);
@@ -22,8 +17,8 @@ public class Minigame1 extends GameScreen {
     @Override
     public void show () {
         Gdx.app.debug("Game", "main menu created");
-        controller = new WorldController();
-        renderer = new WorldRenderer(controller,objects);
+        controller = new WorldController1(this);
+        renderer = new WorldRenderer1(controller,objects);
     }
 
     @Override
