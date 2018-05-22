@@ -9,7 +9,7 @@ public class Minigame1 extends Minigame {
     public Minigame1(Game game) {
         super(game);
         Restaurant_Food test = new Restaurant_Food("test",0,0,1,1);
-        System.out.printf("Ship in %f, %f", test.getX(),test.getY());
+        System.out.printf("Ship in %f, %f\n", test.getX(),test.getY());
         test.addAnimation(Assets.getInstance().playerIdle);
         test.setLoop(true,0);
         objects.add(test);
@@ -30,8 +30,8 @@ public class Minigame1 extends Minigame {
         }
         renderer.render();
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            game.setScreen(new MainMenuScreen(game));
+        if (Gdx.input.isKeyJustPressed(Input.Keys.O)) {
+            game.setScreen(new Minigame2(game));
         }
     }
 

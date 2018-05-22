@@ -4,18 +4,16 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
-import java.util.ArrayList;
+/**
+ * Created by aritz on 22/05/2018.
+ */
 
-public class MainMenuScreen extends GameScreen {
-
-    WorldController controller;
-    WorldRenderer renderer;
-    ArrayList<GameObject> objects = new ArrayList<GameObject>();
-
-    public MainMenuScreen(Game game) {
+public class Minigame3 extends Minigame {
+    public Minigame3(Game game) {
         super(game);
-        GameObject test = new GameObject("test",0,0,1,1);
-        test.addAnimation(Assets.getInstance().playerShoot);
+        Restaurant_Food test = new Restaurant_Food("test",0,0,1,1);
+        System.out.printf("Ship in %f, %f\n", test.getX(),test.getY());
+        test.addAnimation(Assets.getInstance().cloudAnimation);
         test.setLoop(true,0);
         objects.add(test);
     }
@@ -23,8 +21,8 @@ public class MainMenuScreen extends GameScreen {
     @Override
     public void show () {
         Gdx.app.debug("Game", "main menu created");
-        controller = new WorldController();
-        renderer = new WorldRenderer(controller,objects);
+        controller = new WorldController3(this);
+        renderer = new WorldRenderer3(controller,objects);
     }
 
     @Override
@@ -36,13 +34,12 @@ public class MainMenuScreen extends GameScreen {
         renderer.render();
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.O)) {
-            game.setScreen(new Minigame1(game));
+            game.setScreen(new Minigame4(game));
         }
     }
 
     @Override
     public void hide () {
-        Gdx.app.debug("Game", "dispose main menu");
         renderer.dispose();
     }
 }

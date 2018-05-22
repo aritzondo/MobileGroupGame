@@ -1,6 +1,5 @@
 package com.badlogic.drop;
 
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -9,9 +8,8 @@ import com.badlogic.gdx.math.Vector3;
  * Created by aritz on 16/05/2018.
  */
 
-public class WorldController1 extends WorldController implements InputProcessor{
+public class WorldController1 extends WorldController{
 
-    private OrthographicCamera camera;
     private Minigame1 mGame;
 
     private boolean isFoodSelected = false;
@@ -108,7 +106,7 @@ public class WorldController1 extends WorldController implements InputProcessor{
     public boolean mouseMoved(int screenX, int screenY) {
         Vector3 touchPos3 = camera.unproject(new Vector3(screenX, screenY, 0));
         Vector2 touchPos = new Vector2(touchPos3.x,touchPos3.y);
-        System.out.printf("Mouse %d, %d",touchPos.x,touchPos.y);
+        System.out.printf("Mouse %d, %d\n",touchPos.x,touchPos.y);
         return true;
     }
 
