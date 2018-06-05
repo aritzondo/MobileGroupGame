@@ -1,20 +1,20 @@
 package com.badlogic.drop;
 
-/**
- * Created by aritz on 22/05/2018.
- */
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 
 public class Restaurant_Food extends GameObject {
-    Restaurant_Food(String name, float x, float y) {
-        super(name, x, y);
-    }
+
+    private Sprite sprite;
 
     Restaurant_Food(String name, float x, float y, float width, float height) {
         super(name, x, y, width, height);
     }
 
-    Restaurant_Food(String name, float x, float y, float width, float height, float centerX, float centerY) {
-        super(name, x, y, width, height, centerX, centerY);
+    Restaurant_Food(String name, float x, float y, float width, float height,Sprite spr) {
+        super(name, x, y, width, height);
+        sprite = spr;
     }
 
     //check if the table that is below the food is the correct wants that food
@@ -26,5 +26,10 @@ public class Restaurant_Food extends GameObject {
     //return the food to it's origin
     public void dropFood(){
 
+    }
+
+    @Override
+    public void render(SpriteBatch batch) {
+        sprite.draw(batch);
     }
 }

@@ -4,18 +4,14 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
-/**
- * Created by aritz on 22/05/2018.
- */
-
 public class Minigame4 extends Minigame {
 
     public Minigame4(Game game) {
         super(game);
-        Restaurant_Food test = new Restaurant_Food("test", 0, 0, 1, 1);
-        test.addAnimation(Assets.getInstance().playerIdle);
-        test.setLoop(true, 0);
+        Restaurant_Food test = new Restaurant_Food("test", 0, 0, 1, 1,Assets.getInstance().appleSprite);
         objects.add(test);
+        Restaurant_Table table = new Restaurant_Table("table",0,0,1,1,Assets.getInstance().tableSprite);
+        objects.add(table);
     }
 
     @Override

@@ -81,8 +81,7 @@ public class WorldController4 extends WorldController {
             }
         }
 
-        isFoodSelected = false;
-        foodSlected.dropFood();
+
 
         return true;
     }

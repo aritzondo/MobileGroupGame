@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
@@ -37,6 +38,14 @@ public class Assets {
     public Animation<TextureRegion> playerRight;
     public Animation<TextureRegion> playerLeft;
     public Animation<TextureRegion> playerShoot;
+
+    //Sprites
+    public Sprite appleSprite;
+    public Sprite bananaSprite;
+    public Sprite orangeSprite;
+    public Sprite tableSprite;
+
+    //sounds
     public Sound laserShoot;
 
 
@@ -47,6 +56,11 @@ public class Assets {
         cloudAtlas = new TextureAtlas(Gdx.files.internal("cloudAtlas.atlas"));
         cloudAnimation = loadCloudAnimation();
         laserShoot = Gdx.audio.newSound(Gdx.files.internal("laser_shoot.wav"));
+
+        appleSprite = new Sprite(new Texture(Gdx.files.internal("apple.png")));
+        bananaSprite = new Sprite(new Texture(Gdx.files.internal("banana.png")));
+        orangeSprite = new Sprite(new Texture(Gdx.files.internal("orange.png")));
+        tableSprite = new Sprite(new Texture(Gdx.files.internal("mesa.png")));
     }
 
     public static Assets getInstance(){
@@ -54,7 +68,6 @@ public class Assets {
         if(instance == null){
             instance = new Assets();
         }
-
         return instance;
     }
 
