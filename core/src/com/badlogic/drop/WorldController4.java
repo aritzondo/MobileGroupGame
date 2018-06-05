@@ -104,7 +104,6 @@ public class WorldController4 extends WorldController {
     public boolean mouseMoved(int screenX, int screenY) {
         Vector3 touchPos3 = camera.unproject(new Vector3(screenX, screenY, 0));
         Vector2 touchPos = new Vector2(touchPos3.x, touchPos3.y);
-        System.out.printf("Mouse %d, %d\n", touchPos.x, touchPos.y);
         return true;
     }
 

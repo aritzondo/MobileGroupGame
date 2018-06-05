@@ -9,10 +9,10 @@ import com.badlogic.gdx.Input;
  */
 
 public class Minigame4 extends Minigame {
+
     public Minigame4(Game game) {
         super(game);
         Restaurant_Food test = new Restaurant_Food("test", 0, 0, 1, 1);
-        System.out.printf("Ship in %f, %f\n", test.getX(), test.getY());
         test.addAnimation(Assets.getInstance().playerIdle);
         test.setLoop(true, 0);
         objects.add(test);
@@ -22,6 +22,7 @@ public class Minigame4 extends Minigame {
     public void show() {
         Gdx.app.debug("Game", "main menu created");
         controller = new WorldController4(this);
+        Gdx.input.setInputProcessor(controller);
         renderer = new WorldRenderer4(controller, objects);
     }
 
