@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 
 import java.util.ArrayList;
 
@@ -14,7 +15,9 @@ public class WorldController implements InputProcessor {
     protected OrthographicCamera camera;
 
     //inputs
-    Vector2 currentTouch;
+    Vector2 currentTouch = new Vector2(0,0);
+    boolean touching = false;
+    boolean draging = false;
 
     public enum Scene
     {
@@ -66,6 +69,8 @@ public class WorldController implements InputProcessor {
                 minigame4.update(dt);
                 break;
         }
+
+        touching = false;
 
         camera.update();
     }
@@ -140,18 +145,26 @@ public class WorldController implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        currentTouch = new Vector2(screenX, screenY);
-        return false;
+        Vector3 touchPos3 = camera.unproject(new Vector3(screenX, screenY, 0));
+        currentTouch = new Vector2(touchPos3.x, touchPos3.y);
+        touching = true;
+        return true;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return false;
+        currentTouch = new Vector2(0,0);
+        touching = false;
+        draging = false;
+        return true;
     }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        currentTouch = new Vector2(screenX, screenY);
+        Vector3 touchPos3 = camera.unproject(new Vector3(screenX, screenY, 0));
+        currentTouch = new Vector2(touchPos3.x, touchPos3.y);
+        touching = false;
+        draging = true;
         return false;
     }
 
