@@ -1,5 +1,6 @@
 package com.badlogic.drop;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -13,9 +14,26 @@ public class MainMenu extends BaseMinigame {
     MainMenu(WorldController wc)
     {
         this.wc = wc;
-        play = new BaseButton("PLAY", wc, new Vector2(Constants.WORLD_WIDTH/2, Constants.WORLD_HEIGHT/6), new Vector2(1,1));
+        play = new BaseButton("PLAY", wc, new Vector2(-Constants.VIEWPORT_WIDTH/2, 0), new Vector2(10,5)){
+            @Override
+            public void buttonClicked() {
+                super.buttonClicked();
+                System.out.print("clicooo");
+                wc.screenMode = WorldController.ScreenMode.Minigame1;
+            }
+        };
         wc.objects.add(play);
-        exit = new BaseButton("EXIT", wc, new Vector2(Constants.WORLD_WIDTH/2, Constants.WORLD_HEIGHT/3), new Vector2(1,1));
+
+
+        exit = new BaseButton("EXIT", wc, new Vector2(-Constants.VIEWPORT_WIDTH/2, -5f), new Vector2(10,5))
+        {
+            @Override
+            public void buttonClicked() {
+                super.buttonClicked();
+                Gdx.app.exit();
+            }
+        };
         wc.objects.add(exit);
+
     }
 }

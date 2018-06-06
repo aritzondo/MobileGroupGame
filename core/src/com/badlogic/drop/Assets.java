@@ -35,7 +35,7 @@ public class Assets {
     public Texture header;
     public Texture[] lifeBar;
     public Texture background;
-
+    public Texture button;
     //Minigame2
     public Texture fruitBox;
     public Texture handle;
@@ -77,6 +77,8 @@ public class Assets {
         lifeBar[1] = new Texture(Gdx.files.internal("lifeBarRemove.png"));
 
         background = new Texture(Gdx.files.internal("background.png"));
+        button = new Texture(Gdx.files.internal("button.png"));
+
         //minigame2
         fruitBox = new Texture(Gdx.files.internal("minigame2/boxFruit.png"));
         handle = new Texture(Gdx.files.internal("minigame2/handle.png"));
