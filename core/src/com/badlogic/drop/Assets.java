@@ -27,6 +27,7 @@ public class Assets {
     public Texture fruitBox;
     public Texture handle;
     public Texture temperatureBar;
+    public Texture truck;
 
     //Sprites
     public Sprite appleSprite;
@@ -55,6 +56,7 @@ public class Assets {
         fruitBox = new Texture(Gdx.files.internal("minigame2/boxFruit.png"));
         handle = new Texture(Gdx.files.internal("minigame2/handle.png"));
         temperatureBar = new Texture(Gdx.files.internal("minigame2/temperatureBar.png"));
+        truck = new Texture(Gdx.files.internal("minigame2/truck.png"));
     }
 
     public static Assets getInstance(){

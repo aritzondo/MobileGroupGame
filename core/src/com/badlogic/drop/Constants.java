@@ -1,6 +1,5 @@
 package com.badlogic.drop;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
 
 class Constants {
     public static float VIEWPORT_HEIGHT = 10;
