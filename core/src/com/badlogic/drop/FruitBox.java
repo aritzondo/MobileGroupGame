@@ -36,7 +36,7 @@ public class FruitBox extends GameObject{
 
         if(life <= 0)
         {
-            wc.changeScene(WorldController.Scene.Menu);
+            wc.changeScene(WorldController.Scene.Minigame3);
         }
 
     }

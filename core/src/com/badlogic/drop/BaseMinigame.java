@@ -39,6 +39,7 @@ public abstract class BaseMinigame extends GameObject {
         objectsOfLevel.add(buttonBackToMenu);
 
         this.dt = 0;
+
     }
 
     @Override

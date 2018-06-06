@@ -114,7 +114,6 @@ public class WorldController implements InputProcessor {
          this.scene = scene;
     }
 
-
    @Override
     public boolean keyDown(int keycode) {
        if(scene == Scene.Minigame2)
