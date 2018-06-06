@@ -38,7 +38,7 @@ public class BaseButton extends GameObject {
     @Override
     public void update(float elpasedTime) {
         Vector2 currentTouch = wC.getCurrentTouch();
-        if(currentTouch.x > position.x && currentTouch.y > position.y && currentTouch.x < position.x + dimension.x && currentTouch.y < position.y + dimension.y)
+        if(wC.touching && currentTouch.x > position.x && currentTouch.y > position.y && currentTouch.x < position.x + dimension.x && currentTouch.y < position.y + dimension.y)
         {
             buttonClicked();
         }
