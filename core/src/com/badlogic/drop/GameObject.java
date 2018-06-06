@@ -24,6 +24,9 @@ public abstract class GameObject {
 
     WorldController wc;
 
+    protected int life = Constants.TOTAL_LIFE;
+    protected int score = 0;
+
     public GameObject(String name,float x, float y){
         this.name = name;
         position = new Vector2(x,y);

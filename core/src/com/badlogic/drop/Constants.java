@@ -9,4 +9,6 @@ class Constants {
     public static float WORLD_WIDTH = 20;
     public static float WORLD_HEIGHT = 10;
 
+    public static int TOTAL_LIFE = 10;
+
 }
