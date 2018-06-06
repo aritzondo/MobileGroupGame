@@ -41,19 +41,26 @@ public class WorldRenderer {
         //menu
         batch.draw(Assets.getInstance().background, -Constants.WORLD_WIDTH/2 , -Constants.WORLD_HEIGHT/2, Constants.WORLD_WIDTH , Constants.WORLD_HEIGHT);
 
-
-
-        //minigame2
-
-
-        //minigame4
-
-        for(int i = 0; i < wc.objects.size(); i++)
+        switch (wc.scene)
         {
-            wc.objects.get(i).render(batch);
+            case Menu:
+                wc.menu.render(batch);
+                break;
+            case Minigame1:
+                wc.minigame1.render(batch);
+                break;
+            case Minigame2:
+                wc.minigame2.render(batch);
+                break;
+            case Minigame3:
+                wc.minigame3.render(batch);
+                break;
+            case Minigame4:
+                wc.minigame4.render(batch);
+                break;
         }
-        batch.end();
 
+        batch.end();
     }
 
     public void resize(int width, int height){

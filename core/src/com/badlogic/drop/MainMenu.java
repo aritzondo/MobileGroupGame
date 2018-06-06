@@ -19,10 +19,10 @@ public class MainMenu extends BaseMinigame {
             public void buttonClicked() {
                 super.buttonClicked();
                 System.out.print("clicooo");
-                wc.screenMode = WorldController.ScreenMode.Minigame1;
+                //wc.scene = WorldController.Scene.Minigame1;
             }
         };
-        wc.objects.add(play);
+        objectsOfLevel.add(play);
 
 
         exit = new BaseButton("EXIT", wc, new Vector2(-Constants.VIEWPORT_WIDTH/2, -5f), new Vector2(10,5))
@@ -33,7 +33,6 @@ public class MainMenu extends BaseMinigame {
                 Gdx.app.exit();
             }
         };
-        wc.objects.add(exit);
-
+        objectsOfLevel.add(exit);
     }
 }

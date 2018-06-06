@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector2;
  * Created by Cristina on 06/06/2018.
  */
 
-public abstract class BaseButton extends GameObject {
+public class BaseButton extends GameObject {
 
     private Texture buttonImage;
     public String buttonText;
