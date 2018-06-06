@@ -7,9 +7,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
-import java.util.ArrayList;
-
-
 public class WorldController implements InputProcessor {
 
     protected OrthographicCamera camera;
@@ -18,6 +15,7 @@ public class WorldController implements InputProcessor {
     Vector2 currentTouch = new Vector2(0,0);
     boolean touching = false;
     boolean draging = false;
+    int currentLife = Constants.TOTAL_LIFE;
 
     public enum Scene
     {
@@ -34,7 +32,6 @@ public class WorldController implements InputProcessor {
     Minigame3 minigame3;
     Minigame4 minigame4;
     Scene scene;
-
 
     public WorldController(){
         scene = Scene.Menu;
@@ -100,6 +97,11 @@ public class WorldController implements InputProcessor {
     public Vector2 getCurrentTouch()
     {
         return currentTouch;
+    }
+
+    public int getCurrentLife()
+    {
+        return currentLife;
     }
 
     public void changeScene(Scene scene){
