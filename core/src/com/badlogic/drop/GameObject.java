@@ -1,5 +1,4 @@
 package com.badlogic.drop;
-
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -9,8 +8,9 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.ArrayList;
 
 
-public class GameObject {
-    protected String name;
+public abstract class GameObject {
+
+    float rotation;
     protected float time=0.0f;
     protected ArrayList<Animation<TextureRegion>> animations = new ArrayList<Animation<TextureRegion>>(2);
     protected Animation<TextureRegion> actualAnimation = null;
@@ -18,9 +18,11 @@ public class GameObject {
 
     protected Vector2 position;
     protected Vector2 speed;
-    protected  Vector2 dimension;
+    protected Vector2 dimension;
     protected Vector2 origin;
     protected Rectangle bounds;
+
+    WorldController wc;
 
     public GameObject(String name,float x, float y){
         this.name = name;
@@ -150,4 +152,21 @@ public class GameObject {
 
         return bounds.contains(point.x,point.y);
     }
+
+    protected String name;
+    int lives = 0;
+
+    public GameObject(){
+        bounds = new Rectangle();
+    }
+    public void setLives(int lives){this.lives = lives;}
+    public int getLives(){return lives;}
+    public void damage(){lives--;}
+    public void damage(int takeOutlives){this.lives -= takeOutlives;}
+
+    public Rectangle getBounds(){
+        bounds.set(position.x,position.y,dimension.x,dimension.y);
+        return bounds;
+    }
+
 }

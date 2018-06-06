@@ -1,19 +1,14 @@
 package com.badlogic.drop;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+public class Minigame4 extends BaseMinigame {
 
-public class Minigame4 extends Minigame {
-
-    public Minigame4(Game game) {
-        super(game);
-        Restaurant_Food test = new Restaurant_Food("test", 0, 0, 1, 1,Assets.getInstance().appleSprite);
-        objects.add(test);
+    public Minigame4() {
+        Restaurant_Food test = new Restaurant_Food("test", 0, 0, 1, 1, Assets.getInstance().appleSprite);
+        //objects.add(test);
         Restaurant_Table table = new Restaurant_Table("table",0,0,1,1,Assets.getInstance().tableSprite);
-        objects.add(table);
+        //objects.add(table);
     }
-
+/*
     @Override
     public void show() {
         Gdx.app.debug("Game", "main menu created");
@@ -39,5 +34,5 @@ public class Minigame4 extends Minigame {
     public void hide() {
         Gdx.app.debug("Game", "dispose main menu");
         renderer.dispose();
-    }
+    }*/
 }
