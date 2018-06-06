@@ -61,6 +61,7 @@ public abstract class BaseMinigame extends GameObject {
         {
             objectsOfLevel.get(i).update(elpasedTime);
         }
+
     }
 
     private void levelUpdate()
@@ -70,7 +71,7 @@ public abstract class BaseMinigame extends GameObject {
 
     public void checkDead()
     {
-        if(lives <= 0)
+        if(life <= 0)
         {
             //System.out.print("muero");//muero y siguiente nivel
         }
@@ -82,6 +83,7 @@ public abstract class BaseMinigame extends GameObject {
         batch.draw(Assets.getInstance().lifeBar[0], -3, 3.5f, 7f, 1.1f);
         batch.draw(Assets.getInstance().lifeBar[1], -3, 3.5f, 7f*(Constants.TOTAL_LIFE - wc.getCurrentLife())/Constants.TOTAL_LIFE, 1.1f);
 
+        System.out.print(wc.getCurrentLife());
 
         buttonBackToMenu.render(batch);
 
@@ -100,7 +102,12 @@ public abstract class BaseMinigame extends GameObject {
 
     }
 
-    public void getInput(int keyCode)
+    public void getInputDown(int keyCode)
+    {
+
+    }
+
+    public void getInputUp(int keyCode)
     {
 
     }

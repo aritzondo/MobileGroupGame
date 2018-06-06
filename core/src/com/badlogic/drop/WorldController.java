@@ -105,6 +105,11 @@ public class WorldController implements InputProcessor {
         return currentLife;
     }
 
+    public void setCurrentLife(int life)
+    {
+        currentLife = life;
+    }
+
     public void changeScene(Scene scene){
          this.scene = scene;
     }
@@ -112,16 +117,45 @@ public class WorldController implements InputProcessor {
 
    @Override
     public boolean keyDown(int keycode) {
+       if(scene == Scene.Minigame2)
+       {
+           minigame2.getInputDown(keycode);
+       }
+       if(keycode == (Keys.A)) {
+
+           return true;
+       }
+       if(keycode == (Keys.D)) {
+           return true;
+       }
+       if(keycode == (Keys.W)) {
+           return true;
+       }
+       if(keycode == (Keys.S)) {
+           return true;
+       }
+       if(keycode == (Keys.P))
+       {
+           changeScene(Scene.Minigame4);
+           return true;
+       }
+       if(keycode == (Keys.M))
+       {
+           changeScene(Scene.Minigame2);
+           System.out.print("presiono m");
+           return true;
+       }
        return false;
     }
 
     @Override
     public boolean keyUp(int keycode) {
+        if(scene == Scene.Minigame2)
+        {
+            minigame2.getInputUp(keycode);
+        }
         if(keycode == (Keys.A)) {
-            if(scene == Scene.Minigame2)
-            {
-                minigame2.getInput(keycode);
-            }
+
             return true;
         }
         if(keycode == (Keys.D)) {
@@ -133,17 +167,7 @@ public class WorldController implements InputProcessor {
         if(keycode == (Keys.S)) {
             return true;
         }
-        if(keycode == (Keys.P))
-        {
-            changeScene(Scene.Minigame4);
-            return true;
-        }
-        if(keycode == (Keys.M))
-        {
-            changeScene(Scene.Minigame2);
-            System.out.print("presiono m");
-            return true;
-        }
+
         return false;
     }
 

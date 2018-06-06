@@ -10,4 +10,6 @@ class Constants {
 
     public static int TOTAL_LIFE = 10;
 
+    //minigame2
+    public static float FRUITBOX_SPEED = 2;
 }
