@@ -18,7 +18,7 @@ public abstract class BaseMinigame extends GameObject {
     protected float dt = 0;
     protected boolean nextLevel = false;
 
-    BitmapFont text;
+    BitmapFont text = new BitmapFont();
 
     BaseMinigame(WorldController wc){
         this.wc = wc;
