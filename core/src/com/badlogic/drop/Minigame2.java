@@ -17,22 +17,22 @@ public class Minigame2 extends BaseMinigame {
     Texture termostate;
     Minigame2(WorldController wc) {
         super(wc);
-        fruitBox = new FruitBox(wc, new Vector2(0,0), new Vector2(3,3));
-        handle = new Handle(wc, new Vector2(0,0), new Vector2(3,3));
-        truck = new Truck(wc, new Vector2(0,0), new Vector2(3,3));
+        fruitBox = new FruitBox(wc, new Vector2(-4,-3), new Vector2(3,3));
+        handle = new Handle(wc, new Vector2(3.7f,-3), new Vector2(4,3));
+        truck = new Truck(wc, new Vector2(-8,-5), new Vector2(11,8));
         termostate = Assets.getInstance().temperatureBar;
 
         objectsOfLevel.add(fruitBox);
         objectsOfLevel.add(handle);
         objectsOfLevel.add(truck);
-
     }
 
     @Override
     public void GUI(SpriteBatch batch) {
         super.GUI(batch);
-        batch.draw(termostate, 5, 0);
+        batch.draw(termostate, 2.5f, -4.8f, 8, 8);
     }
+
 
 
 }

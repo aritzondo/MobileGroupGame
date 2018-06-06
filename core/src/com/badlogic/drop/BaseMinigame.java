@@ -99,4 +99,9 @@ public abstract class BaseMinigame extends GameObject {
     public void reset(){
 
     }
+
+    public void getInput(int keyCode)
+    {
+
+    }
 }

@@ -118,6 +118,10 @@ public class WorldController implements InputProcessor {
     @Override
     public boolean keyUp(int keycode) {
         if(keycode == (Keys.A)) {
+            if(scene == Scene.Minigame2)
+            {
+                minigame2.getInput(keycode);
+            }
             return true;
         }
         if(keycode == (Keys.D)) {
