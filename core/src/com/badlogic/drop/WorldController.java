@@ -15,6 +15,7 @@ public class WorldController implements InputProcessor {
     Vector2 currentTouch = new Vector2(0,0);
     boolean touching = false;
     boolean draging = false;
+    boolean released = false;
     int currentLife = Constants.TOTAL_LIFE;
 
     public enum Scene
@@ -70,7 +71,7 @@ public class WorldController implements InputProcessor {
         }
 
         touching = false;
-
+        released = false;
         camera.update();
     }
 
@@ -160,6 +161,7 @@ public class WorldController implements InputProcessor {
         currentTouch = new Vector2(0,0);
         touching = false;
         draging = false;
+        released = true;
         return true;
     }
 
