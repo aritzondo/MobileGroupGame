@@ -12,9 +12,8 @@ public class MainMenu extends BaseMinigame {
     BaseButton play;
     BaseButton exit;
 
-    MainMenu(WorldController wc)
-    {
-        this.wc = wc;
+    MainMenu(WorldController wc) {
+        super(wc);
         play = new BaseButton("PLAY", wc, new Vector2(-Constants.VIEWPORT_WIDTH/2, 0), new Vector2(10,5)){
             @Override
             public void buttonClicked() {
@@ -35,6 +34,12 @@ public class MainMenu extends BaseMinigame {
             }
         };
         objectsOfLevel.add(exit);
+    }
+
+    @Override
+    public void update(float elpasedTime) {
+        super.update(elpasedTime);
+
     }
 
     @Override

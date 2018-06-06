@@ -8,9 +8,7 @@ public class Minigame2 extends BaseMinigame {
 
     WorldController wc;
 
-    public Minigame2(WorldController wc) {
-
-        this.wc = wc;
-
+    Minigame2(WorldController wc) {
+        super(wc);
     }
 }

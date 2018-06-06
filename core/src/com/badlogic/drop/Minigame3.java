@@ -5,7 +5,8 @@ package com.badlogic.drop;
  */
 
 public class Minigame3 extends BaseMinigame {
-    public Minigame3() {
-    }
 
+    Minigame3(WorldController wc) {
+        super(wc);
+    }
 }

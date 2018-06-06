@@ -1,5 +1,6 @@
 package com.badlogic.drop;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -11,19 +12,18 @@ import java.util.ArrayList;
 
 public abstract class BaseMinigame extends GameObject {
 
-    protected ArrayList<GameObject> objectsOfLevel = new ArrayList<GameObject>();
+    protected ArrayList<GameObject> objectsOfLevel;
     protected WorldController wc;
 
     protected float dt = 0;
     protected boolean nextLevel = false;
 
-    private BaseButton buttonBackToMenu = new BaseButton("BACK", wc, new Vector2(0,0),new Vector2(1,1)){
-        @Override
-        public void buttonClicked() {
-            wc.changeScene(WorldController.Scene.Menu);
-        }
-    };
+    BitmapFont text;
 
+    BaseMinigame(WorldController wc){
+        this.wc = wc;
+        objectsOfLevel = new ArrayList<GameObject>();
+    }
 
     @Override
     public void render(SpriteBatch batch)
@@ -64,9 +64,20 @@ public abstract class BaseMinigame extends GameObject {
         batch.draw(Assets.getInstance().header, -9, 3.2f, 20, 1.8f);
         batch.draw(Assets.getInstance().lifeBar[0], 0, 0f, 1, 1);
         batch.draw(Assets.getInstance().lifeBar[1], 0, 0,1,1);
-
+        BaseButton buttonBackToMenu = new BaseButton("BACK", wc, new Vector2(-8,3.3f),new Vector2(2,1.5f)){
+            @Override
+            public void buttonClicked() {
+                wc.changeScene(WorldController.Scene.Menu);
+            }
+        };
         buttonBackToMenu.render(batch);
-        /*time.getData().setScale(Gdx.graphics.getWidth()*0.0015f);
+
+
+        //text
+        text.draw(batch, "Minigame: " + wc.scene, -6, 3.3f);
+
+/*
+        time.getData().setScale(Gdx.graphics.getWidth()*0.0015f);
         time.draw(batch, "Time: "+((int)elapsedTime), Constants.WIDTH_RATIO*(3.9f), Constants.dimension(0, 4.6f).y);*/
     }
 
