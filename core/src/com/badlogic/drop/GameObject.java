@@ -17,7 +17,7 @@ public abstract class GameObject {
     protected int animIndex = -1;
 
     protected Vector2 position;
-    protected Vector2 speed;
+    protected Vector2 speed = new Vector2();
     protected Vector2 dimension;
     protected Vector2 origin;
     protected Rectangle bounds;
@@ -25,6 +25,15 @@ public abstract class GameObject {
     WorldController wc;
 
     protected int life = Constants.TOTAL_LIFE;
+    public void setLives(int lives){this.life = lives;}
+    public int getLives(){return life;}
+    public void damage()
+    {
+        life--;
+        wc.setCurrentLife(life);
+    }
+    public void damage(int takeOutlives){this.life -= takeOutlives;}
+
     protected int score = 0;
 
     public GameObject(String name,float x, float y){
@@ -150,22 +159,19 @@ public abstract class GameObject {
     public void setSpeed(Vector2 newSpeed){
         speed = newSpeed;
     }
-
+    public void addSpeed(float x, float y){
+        speed.add(x,y);
+    }
     public boolean isPointInBounds(Vector2 point){
 
         return bounds.contains(point.x,point.y);
     }
 
     protected String name;
-    int lives = 0;
-
     public GameObject(){
         bounds = new Rectangle();
     }
-    public void setLives(int lives){this.lives = lives;}
-    public int getLives(){return lives;}
-    public void damage(){lives--;}
-    public void damage(int takeOutlives){this.lives -= takeOutlives;}
+
 
     public Rectangle getBounds(){
         bounds.set(position.x,position.y,dimension.x,dimension.y);

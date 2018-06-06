@@ -26,7 +26,7 @@ public class Assets {
     //Minigame2
     public Texture fruitBox;
     public Texture handle;
-    public Texture temperatureBar;
+    public Texture[] temperatureBar;
     public Texture truck;
 
     //Sprites
@@ -57,7 +57,10 @@ public class Assets {
         //minigame2
         fruitBox = new Texture(Gdx.files.internal("minigame2/boxFruit.png"));
         handle = new Texture(Gdx.files.internal("minigame2/handle.png"));
-        temperatureBar = new Texture(Gdx.files.internal("minigame2/temperatureBar.png"));
+        temperatureBar = new Texture[2];
+        temperatureBar[0] = new Texture(Gdx.files.internal("minigame2/temperatureBarFix.png"));
+        temperatureBar[1] = new Texture(Gdx.files.internal("minigame2/temperatureBar.png"));
+
         truck = new Texture(Gdx.files.internal("minigame2/truck.png"));
     }
 
