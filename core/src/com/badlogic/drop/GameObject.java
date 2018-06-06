@@ -150,4 +150,8 @@ public class GameObject {
 
         return bounds.contains(point.x,point.y);
     }
+
+    public boolean isObjectInBounds(GameObject other) {
+        return bounds.overlaps(other.bounds);
+    }
 }

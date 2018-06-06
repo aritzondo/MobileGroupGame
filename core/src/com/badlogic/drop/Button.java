@@ -4,25 +4,24 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
-import java.util.ArrayList;
+/**
+ * Created by aritz on 06/06/2018.
+ */
 
-public class Restaurant_Table extends GameObject {
+public class Button extends GameObject {
 
-    public Sprite sprite;
+    Sprite sprite;
 
-    private ArrayList<Restaurant_Food> food = new ArrayList<Restaurant_Food>();
+    public Button(String name, float x, float y) {
+        super(name, x, y);
+    }
 
-    Restaurant_Table(String name, float x, float y, float width, float height, Sprite sprite){
+    public Button(String name, float x, float y, float width, float height, Sprite sprite){
         super(name, x, y);
         dimension = new Vector2(width, height);
         this.sprite = sprite;
         resizeSprite();
         bounds = sprite.getBoundingRectangle();
-    }
-
-    @Override
-    public void render(SpriteBatch batch) {
-        sprite.draw(batch);
     }
 
     private void resizeSprite(){
@@ -34,13 +33,12 @@ public class Restaurant_Table extends GameObject {
         sprite.setPosition(position.x-sprite.getWidth()/2,position.y-sprite.getHeight()/2);
     }
 
-    public void setPosition(Vector2 newPos){
-        super.setPosition(newPos.x, newPos.y);
-        setSpritePosition();
+    public void clicked(){
+        System.out.printf("%s has been clicked\n",name);
     }
 
-    private void setSpritePosition(){
-        sprite.setPosition(position.x-sprite.getWidth()/2,position.y-sprite.getHeight()/2);
+    @Override
+    public void render(SpriteBatch batch){
+        sprite.draw(batch);
     }
-
 }

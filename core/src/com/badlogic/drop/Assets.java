@@ -44,6 +44,7 @@ public class Assets {
     public Sprite bananaSprite;
     public Sprite orangeSprite;
     public Sprite tableSprite;
+    public Sprite buttonImg;
 
     //sounds
     public Sound laserShoot;
@@ -61,6 +62,7 @@ public class Assets {
         bananaSprite = new Sprite(new Texture(Gdx.files.internal("banana.png")));
         orangeSprite = new Sprite(new Texture(Gdx.files.internal("orange.png")));
         tableSprite = new Sprite(new Texture(Gdx.files.internal("mesa.png")));
+        buttonImg = new Sprite(new Texture(Gdx.files.internal("button.png")));
     }
 
     public static Assets getInstance(){

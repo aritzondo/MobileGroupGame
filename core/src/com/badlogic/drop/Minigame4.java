@@ -6,12 +6,17 @@ import com.badlogic.gdx.Input;
 
 public class Minigame4 extends Minigame {
 
+    public TestButton tButton;
+    public Restaurant_Table table;
+
     public Minigame4(Game game) {
         super(game);
-        Restaurant_Food test = new Restaurant_Food("test", 0, 0, 1, 1,Assets.getInstance().appleSprite);
+        Restaurant_Food test = new Restaurant_Food("test", 5, 5, 1, 1,Assets.getInstance().appleSprite);
         objects.add(test);
-        Restaurant_Table table = new Restaurant_Table("table",0,0,1,1,Assets.getInstance().tableSprite);
+        table = new Restaurant_Table("table",0,-5,4,4,Assets.getInstance().tableSprite);
         objects.add(table);
+        tButton = new TestButton("testButton",0,0,2,2,Assets.getInstance().buttonImg);
+        objects.add(tButton);
     }
 
     @Override
@@ -33,6 +38,11 @@ public class Minigame4 extends Minigame {
         if (Gdx.input.isKeyJustPressed(Input.Keys.O)) {
             game.setScreen(new MainMenuScreen(game));
         }
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height);
     }
 
     @Override

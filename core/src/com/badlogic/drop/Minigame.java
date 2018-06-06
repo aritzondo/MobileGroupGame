@@ -17,4 +17,9 @@ public class Minigame extends GameScreen {
     public Minigame(Game game) {
         super(game);
     }
+
+    @Override
+    public void resize(int width, int height) {
+        renderer.resize(width,height);
+    }
 }

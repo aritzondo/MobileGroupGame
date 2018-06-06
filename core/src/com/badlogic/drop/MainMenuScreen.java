@@ -14,10 +14,10 @@ public class MainMenuScreen extends GameScreen {
 
     public MainMenuScreen(Game game) {
         super(game);
-        GameObject test = new GameObject("test",0,0,1,1);
-        test.addAnimation(Assets.getInstance().playerShoot);
-        test.setLoop(true,0);
-        objects.add(test);
+        GameObject button = new GameObject("button",0,0,1,1);
+        button.addAnimation(Assets.getInstance().playerShoot);
+        button.setLoop(true,0);
+        objects.add(button);
     }
 
     @Override

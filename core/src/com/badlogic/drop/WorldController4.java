@@ -57,6 +57,9 @@ public class WorldController4 extends WorldController {
                 }
             }
         }
+        if (mGame.tButton.isPointInBounds(touchPos)) {
+            mGame.tButton.clicked();
+        }
 
         return true;
     }
@@ -79,6 +82,7 @@ public class WorldController4 extends WorldController {
                     }
                 }
             }
+            foodSlected.dropFood();
         }
 
 
@@ -93,7 +97,7 @@ public class WorldController4 extends WorldController {
         Vector2 touchPos = new Vector2(touchPos3.x, touchPos3.y);
 
         if (isFoodSelected) {
-            foodSlected.position = touchPos;
+            foodSlected.setPosition(touchPos);
         }
 
         return true;
