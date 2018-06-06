@@ -1,6 +1,7 @@
 package com.badlogic.drop;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
@@ -9,48 +10,40 @@ import java.util.ArrayList;
  */
 
 public abstract class BaseMinigame extends GameObject {
-/*
-    public enum LevelState
-    {
-        Playing,
-        Dead
-    }*/
 
-    private ArrayList<GameObject> objectsOfLevel;
+    protected ArrayList<GameObject> objectsOfLevel = new ArrayList<GameObject>();
     protected WorldController wc;
-    private BaseButton buttonBackToMenu;
+    private BaseButton buttonBackToMenu = new BaseButton("BACK", wc, new Vector2(0,0),new Vector2(1,1)){
+        @Override
+        public void buttonClicked() {
+            super.buttonClicked();
+            //wc.changeScene(wc.Scene.Menu);
+        }
+    };
     protected float dt = 0;
     protected boolean nextLevel = false;
-    //protected LevelState levelState;
-
 
     @Override
     public void render(SpriteBatch batch) {
-
+        drawHeader(batch);
+        for(int i = 0; i < objectsOfLevel.size(); i++){
+            objectsOfLevel.get(i).render(batch);
+        }
     }
 
     @Override
     public void update(float elpasedTime) {
-/*
-        switch (levelState)
-        {
-            case Playing:
-                checkDead();
-                levelUpdate();
-                break;
-            case Dead:
-                buttonBackToMenu.update(elpasedTime);
-                break;
-        }*/
+        checkDead();
     }
 
     private void levelUpdate() {
+
     }
 
     public void checkDead(){
         if(lives <= 0)
         {
-            //muero y siguiente nivel
+            //System.out.print("muero");//muero y siguiente nivel
         }
     }
 

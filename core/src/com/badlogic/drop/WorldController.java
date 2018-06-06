@@ -1,6 +1,7 @@
 package com.badlogic.drop;
 
-import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
@@ -15,10 +16,7 @@ public class WorldController implements InputProcessor {
     //inputs
     Vector2 currentTouch;
 
-    //Objects
-    ArrayList<GameObject> objects = new ArrayList<GameObject>();
-
-    public enum ScreenMode
+    public enum Scene
     {
         Menu,
         Minigame1,
@@ -32,11 +30,12 @@ public class WorldController implements InputProcessor {
     Minigame2 minigame2;
     Minigame3 minigame3;
     Minigame4 minigame4;
-    ScreenMode screenMode;
+    Scene scene;
 
 
     public WorldController(){
-        screenMode = ScreenMode.Menu;
+        scene = Scene.Menu;
+        Gdx.input.setInputProcessor(this);
         init();
     }
 
@@ -52,7 +51,7 @@ public class WorldController implements InputProcessor {
 
     public void update(float dt)
     {
-        switch (screenMode){
+        switch (scene){
             case Menu:
                 menu.update(dt);
                 break;
@@ -72,7 +71,7 @@ public class WorldController implements InputProcessor {
     }
 
     void reset(){
-        switch (screenMode){
+        switch (scene){
             case Menu:
                 menu.reset();
                 break;
@@ -96,26 +95,41 @@ public class WorldController implements InputProcessor {
         return currentTouch;
     }
 
+    public void changeScene(Scene scene){
+         this.scene = scene;
+    }
+
+
    @Override
     public boolean keyDown(int keycode) {
-       if(keycode == (Input.Keys.A)) {
-           return true;
-       }
-       if(keycode == (Input.Keys.D)) {
-           return true;
-       }
-       if(keycode == (Input.Keys.W)) {
-           return true;
-       }
-       if(keycode == (Input.Keys.S)) {
-           return true;
-       }
-
        return false;
     }
 
     @Override
     public boolean keyUp(int keycode) {
+        if(keycode == (Keys.A)) {
+            return true;
+        }
+        if(keycode == (Keys.D)) {
+            return true;
+        }
+        if(keycode == (Keys.W)) {
+            return true;
+        }
+        if(keycode == (Keys.S)) {
+            return true;
+        }
+        if(keycode == (Keys.P))
+        {
+            changeScene(Scene.Minigame4);
+            return true;
+        }
+        if(keycode == (Keys.M))
+        {
+            changeScene(Scene.Minigame2);
+            System.out.print("presiono m");
+            return true;
+        }
         return false;
     }
 
