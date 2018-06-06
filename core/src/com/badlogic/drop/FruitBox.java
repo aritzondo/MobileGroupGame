@@ -26,4 +26,6 @@ public class FruitBox extends GameObject{
     public void render(SpriteBatch batch) {
         batch.draw(fruitBox, position.x, position.y, dimension.x, dimension.y);
     }
+
+
 }
