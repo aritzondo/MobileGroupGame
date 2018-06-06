@@ -19,9 +19,13 @@ public class Client_Table extends GameObject {
     private Sprite foodRequested = null;
     private Vector2 foodOffset = new Vector2(0,1.5f);
     private Minigame4 mGame;
+    //
     private float timeToLeave = 30;
     private float timeLeft;
     private float timeToComeBack= 15;
+    private float timeToNextClient = 0;
+    private boolean waiting = true;
+    private boolean coming = false;
 
     Client_Table(String name, float x, float y, float width, float height, Sprite sprite, Minigame4 game){
         super(name, x, y);
@@ -40,6 +44,16 @@ public class Client_Table extends GameObject {
         sprite.draw(batch);
         if(foodRequested != null){
             foodRequested.draw(batch);
+        }
+    }
+
+    @Override
+    public void update(float delta) {
+        if(waiting){
+            timeLeft -= delta;
+            if(timeLeft <= 0){
+
+            }
         }
     }
 
@@ -64,9 +78,11 @@ public class Client_Table extends GameObject {
     private void askForFood(){
         foodRequestedType = MathUtils.random(0, Minigame4.FoodType.Count.ordinal()-1);
         Sprite food = Assets.getInstance().getFoodOfType(Minigame4.FoodType.values()[foodRequestedType]);
-        foodRequested = food;
-
+        foodRequested = new Sprite(food);
+        System.out.printf("I want %d",foodRequestedType);
         resizeFood();
+        timeLeft = timeToLeave;
+        waiting = true;
     }
 
     private void resizeFood(){
@@ -80,6 +96,10 @@ public class Client_Table extends GameObject {
 
     public boolean checkDrop(Restaurant_Food drop){
         return bounds.overlaps(drop.bounds)  && foodRequestedType == drop.mType.ordinal();
+    }
+
+    public void serveFood(){
+
     }
 
 }

@@ -25,7 +25,7 @@ public class Restaurant_Food extends GameObject {
         dimension = new Vector2(width, height);
         this.sprite = new Sprite(sprite);
         resizeSprite();
-        bounds = sprite.getBoundingRectangle();
+        bounds = this.sprite.getBoundingRectangle();
         iniPos = position;
         this.wc = wc;
         mGame = game;
@@ -39,7 +39,7 @@ public class Restaurant_Food extends GameObject {
             if (!clicked) {
                 if (wc.touching && bounds.contains(wc.currentTouch.x, wc.currentTouch.y)) {
                     System.out.printf("Clicked\n");
-                    System.out.printf("My pos x:%f,y:%f\n", position.x, position.y);
+                    System.out.printf("My pos x:%f,y:%f\n", bounds.x, bounds.y);
                     System.out.printf("Mouse pos x:%f,y:%f\n", wc.currentTouch.x, wc.currentTouch.y);
                     clicked = true;
                 }
@@ -62,7 +62,7 @@ public class Restaurant_Food extends GameObject {
         for (Client_Table client : mGame.clients){
             if(client.checkDrop(this)){
                 dropFood(client);
-                return;
+                break;
             }
         }
         setPosition(iniPos);
@@ -95,6 +95,7 @@ public class Restaurant_Food extends GameObject {
 
     private void setSpritePosition(){
         sprite.setPosition(position.x-sprite.getWidth()/2,position.y-sprite.getHeight()/2);
+        bounds = sprite.getBoundingRectangle();
     }
 
     public void changeFood(Sprite spr, Minigame4.FoodType type){
@@ -102,5 +103,7 @@ public class Restaurant_Food extends GameObject {
         resizeSprite();
 
         mType = type;
+
+        active = true;
     }
 }

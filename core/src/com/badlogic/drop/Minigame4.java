@@ -25,7 +25,17 @@ public class Minigame4 extends BaseMinigame {
         super(wc);
         Restaurant_Table table = new Restaurant_Table("table",0,-5,16,4,Assets.getInstance().tableSprite,this);
         objectsOfLevel.add(table);
+        iniClients();
+    }
+
+    public void iniClients(){
         Client_Table client1 = new Client_Table("client1",-5,3,4,4,Assets.getInstance().tableSprite,this);
+        objectsOfLevel.add(client1);
+        clients.add(client1);
+        client1 = new Client_Table("client2",0,3,4,4,Assets.getInstance().tableSprite,this);
+        objectsOfLevel.add(client1);
+        clients.add(client1);
+        client1 = new Client_Table("client3",5,3,4,4,Assets.getInstance().tableSprite,this);
         objectsOfLevel.add(client1);
         clients.add(client1);
     }
@@ -41,25 +51,26 @@ public class Minigame4 extends BaseMinigame {
     }
 
     private void spawnFood(){
-        if(food.size()<=maxFoodOnTable){
+        FoodType type = Minigame4.FoodType.values()[MathUtils.random(0, Minigame4.FoodType.Count.ordinal()-1)];
+        Sprite spr = Assets.getInstance().getFoodOfType(type);
+        if(food.size() < maxFoodOnTable){
             float xPos = -5 + 5 * food.size();
-            FoodType type = Minigame4.FoodType.values()[MathUtils.random(0, Minigame4.FoodType.Count.ordinal()-1)];
-            Sprite spr = Assets.getInstance().getFoodOfType(type);
-            Restaurant_Food newFood = new Restaurant_Food("food",xPos,0,1,1,spr,wc,this,type);
+            Restaurant_Food newFood = new Restaurant_Food("food",xPos,-2,1,1,spr,wc,this,type);
             objectsOfLevel.add(newFood);
             food.add(newFood);
         }
         else{
             int free;
             if((free = getFirtFree())>=0){
-
+                food.get(free).changeFood(spr,type);
             }
         }
     }
 
     private int getFirtFree(){
         for(int i = 0; i < food.size() ; i++){
-            
+            if(!food.get(i).active) return i;
         }
+        return -1;
     }
 }
