@@ -14,18 +14,18 @@ public class MainMenu extends BaseMinigame {
 
     MainMenu(WorldController wc) {
         super(wc);
-        play = new BaseButton("PLAY", wc, new Vector2(-Constants.VIEWPORT_WIDTH/2, 0), new Vector2(10,5)){
+        play = new BaseButton("PLAY", this.wc, new Vector2(-Constants.VIEWPORT_WIDTH/2, 0), new Vector2(10,5)){
             @Override
             public void buttonClicked() {
                 super.buttonClicked();
                 System.out.print("clicooo");
-                //wc.scene = WorldController.Scene.Minigame1;
+                wC.scene = WorldController.Scene.Minigame1;
             }
         };
         objectsOfLevel.add(play);
 
 
-        exit = new BaseButton("EXIT", wc, new Vector2(-Constants.VIEWPORT_WIDTH/2, -5f), new Vector2(10,5))
+        exit = new BaseButton("EXIT", this.wc, new Vector2(-Constants.VIEWPORT_WIDTH/2, -5f), new Vector2(10,5))
         {
             @Override
             public void buttonClicked() {
@@ -36,11 +36,6 @@ public class MainMenu extends BaseMinigame {
         objectsOfLevel.add(exit);
     }
 
-    @Override
-    public void update(float elpasedTime) {
-        super.update(elpasedTime);
-
-    }
 
     @Override
     public void GUI(SpriteBatch batch) {

@@ -45,9 +45,9 @@ public class WorldController implements InputProcessor {
     void init()
     {
         menu = new MainMenu(this);
-        minigame1 = new Minigame1();
+        minigame1 = new Minigame1(this);
         minigame2 = new Minigame2(this);
-        minigame3 = new Minigame3();
+        minigame3 = new Minigame3(this);
         minigame4 = new Minigame4(this);
         currentTouch = new Vector2();
     }
@@ -59,11 +59,13 @@ public class WorldController implements InputProcessor {
                 menu.update(dt);
                 break;
             case Minigame1:
+                minigame1.update(dt);
                 break;
             case Minigame2:
                 minigame2.update(dt);
                 break;
             case Minigame3:
+                minigame3.update(dt);
                 break;
             case Minigame4:
                 minigame4.update(dt);
