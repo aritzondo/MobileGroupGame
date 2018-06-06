@@ -1,6 +1,7 @@
 package com.badlogic.drop;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -34,5 +35,10 @@ public class MainMenu extends BaseMinigame {
             }
         };
         objectsOfLevel.add(exit);
+    }
+
+    @Override
+    public void GUI(SpriteBatch batch) {
+
     }
 }

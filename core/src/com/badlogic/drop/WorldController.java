@@ -45,7 +45,7 @@ public class WorldController implements InputProcessor {
         minigame1 = new Minigame1();
         minigame2 = new Minigame2(this);
         minigame3 = new Minigame3();
-        minigame4 = new Minigame4();
+        minigame4 = new Minigame4(this);
         currentTouch = new Vector2();
     }
 

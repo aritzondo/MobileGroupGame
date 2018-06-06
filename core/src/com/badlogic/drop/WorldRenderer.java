@@ -30,6 +30,8 @@ public class WorldRenderer {
         camera.position.set(0,0,0);
 
         camera.update();
+        wc.camera = camera;
+
     }
 
     void render(){
