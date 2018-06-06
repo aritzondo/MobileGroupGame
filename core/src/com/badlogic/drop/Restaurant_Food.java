@@ -7,53 +7,76 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Restaurant_Food extends GameObject {
 
+    public Minigame4.FoodType mType;
+    public boolean active = true;
+
     private Sprite sprite;
     private Vector2 iniPos;
     private WorldController wc;
     private boolean clicked = false;
+    private Minigame4 mGame;
 
     Restaurant_Food(String name, float x, float y, float width, float height) {
         super(name, x, y, width, height);
     }
 
-    Restaurant_Food (String name, float x, float y, float width, float height, Sprite sprite, WorldController wc){
+    Restaurant_Food (String name, float x, float y, float width, float height, Sprite sprite, WorldController wc, Minigame4 game, Minigame4.FoodType type){
         super(name, x, y);
         dimension = new Vector2(width, height);
-        this.sprite = sprite;
+        this.sprite = new Sprite(sprite);
         resizeSprite();
         bounds = sprite.getBoundingRectangle();
         iniPos = position;
         this.wc = wc;
+        mGame = game;
+        mType = type;
     }
 
     @Override
     public void update(float delta) {
-        super.update(delta);
-        if(!clicked){
-            if(wc.touching && bounds.contains(wc.currentTouch.x, wc.currentTouch.y)){
-                clicked = true;
-            }
-        }
-        else{
-            if(wc.touching || wc.draging){
-                setPosition(wc.currentTouch);
-            }
-           else if(wc.released){
-                clicked= false;
-                dropFood();
-            }
+        if(active) {
+            super.update(delta);
+            if (!clicked) {
+                if (wc.touching && bounds.contains(wc.currentTouch.x, wc.currentTouch.y)) {
+                    System.out.printf("Clicked\n");
+                    System.out.printf("My pos x:%f,y:%f\n", position.x, position.y);
+                    System.out.printf("Mouse pos x:%f,y:%f\n", wc.currentTouch.x, wc.currentTouch.y);
+                    clicked = true;
+                }
+            } else {
+                if (wc.touching || wc.draging) {
+                    System.out.printf("Dragged\n");
+                    setPosition(wc.currentTouch);
+                } else if (wc.released) {
+                    System.out.printf("Released\n");
+                    clicked = false;
+                    dropFood();
+                }
 
+            }
         }
     }
 
     //check if can be drop on a table or return it to the initial position
     public void dropFood(){
+        for (Client_Table client : mGame.clients){
+            if(client.checkDrop(this)){
+                dropFood(client);
+                return;
+            }
+        }
         setPosition(iniPos);
+    }
+
+    public void dropFood(Client_Table client){
+        clicked = false;
+        active = false;
     }
 
     @Override
     public void render(SpriteBatch batch) {
-        sprite.draw(batch);
+        if(active)
+            sprite.draw(batch);
     }
 
     private void resizeSprite(){
@@ -72,5 +95,12 @@ public class Restaurant_Food extends GameObject {
 
     private void setSpritePosition(){
         sprite.setPosition(position.x-sprite.getWidth()/2,position.y-sprite.getHeight()/2);
+    }
+
+    public void changeFood(Sprite spr, Minigame4.FoodType type){
+        sprite = new Sprite(spr);
+        resizeSprite();
+
+        mType = type;
     }
 }

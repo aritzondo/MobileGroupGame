@@ -34,6 +34,7 @@ public class Assets {
     public Sprite bananaSprite;
     public Sprite orangeSprite;
     public Sprite tableSprite;
+    public Sprite clientTable;
 
 
     private Assets(){
@@ -41,6 +42,7 @@ public class Assets {
         bananaSprite = new Sprite(new Texture(Gdx.files.internal("banana.png")));
         orangeSprite = new Sprite(new Texture(Gdx.files.internal("orange.png")));
         tableSprite = new Sprite(new Texture(Gdx.files.internal("mesa.png")));
+        clientTable = new Sprite(new Texture(Gdx.files.internal("client_Table.png")));
 
         //HUD
         header = new Texture(Gdx.files.internal("header.png"));
@@ -65,5 +67,18 @@ public class Assets {
             instance = new Assets();
         }
         return instance;
+    }
+
+    public Sprite getFoodOfType(Minigame4.FoodType type){
+        switch(type){
+            case Apple:
+                return appleSprite;
+            case Banana:
+                return bananaSprite;
+            case Orange:
+                return orangeSprite;
+            default:
+                return null;
+        }
     }
 }
