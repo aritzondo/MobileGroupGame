@@ -12,35 +12,45 @@ import java.util.ArrayList;
 
 public class WorldRenderer {
     //private
-    private OrthographicCamera camera;
-    private SpriteBatch batch;
-    private WorldController controller;
-    private BitmapFont font;
-    private ArrayList<GameObject> objects;
+    OrthographicCamera camera;
+    SpriteBatch batch;
+    WorldController wc;
+    BitmapFont font;
 
-    public WorldRenderer(WorldController wd, ArrayList<GameObject> objects){
-        controller=wd;
-        this.objects = objects;
-        init();
-        controller.setCamera(camera);
+    public WorldRenderer(WorldController wc){
+        this.wc = wc;
+        batch = new SpriteBatch();
         font = new BitmapFont();
+        camera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
+        init();
     }
+
     private void init(){
-        // create the camera and the SpriteBatch
-        camera = new OrthographicCamera();
         camera.setToOrtho(false, Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
         camera.position.set(0,0,0);
-        batch = new SpriteBatch();
+
         camera.update();
     }
 
     void render(){
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        for (GameObject object:objects) {
-            object.render(batch);
+        //menu
+        batch.draw(Assets.getInstance().background, -Constants.WORLD_WIDTH/2 , -Constants.WORLD_HEIGHT/2, Constants.WORLD_WIDTH , Constants.WORLD_HEIGHT);
+
+
+
+        //minigame2
+
+
+        //minigame4
+
+        for(int i = 0; i < wc.objects.size(); i++)
+        {
+            wc.objects.get(i).render(batch);
         }
         batch.end();
 

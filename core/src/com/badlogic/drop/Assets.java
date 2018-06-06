@@ -25,12 +25,21 @@ public class Assets {
     /*
     *public
      */
-    //Atlas
-    public TextureAtlas cloudAtlas;
+
     //Texture
     public Texture walkSheet;
     public Texture playerSheet;
     public Texture playerShootSheet;
+
+    //HUD
+    public Texture header;
+    public Texture[] lifeBar;
+    public Texture background;
+
+    //Minigame2
+    public Texture fruitBox;
+    public Texture handle;
+    public Texture temperatureBar;
     //Animation
     public Animation<TextureRegion> cloudAnimation;
     public Animation<TextureRegion> walkAnimation;
@@ -44,7 +53,6 @@ public class Assets {
     public Sprite bananaSprite;
     public Sprite orangeSprite;
     public Sprite tableSprite;
-    public Sprite buttonImg;
 
     //sounds
     public Sound laserShoot;
@@ -54,15 +62,25 @@ public class Assets {
         walkAnimation = loadWalkAnimation();
         loadPlayerShip();
         loadPlayerShoot();
-        cloudAtlas = new TextureAtlas(Gdx.files.internal("cloudAtlas.atlas"));
-        cloudAnimation = loadCloudAnimation();
         laserShoot = Gdx.audio.newSound(Gdx.files.internal("laser_shoot.wav"));
 
         appleSprite = new Sprite(new Texture(Gdx.files.internal("apple.png")));
         bananaSprite = new Sprite(new Texture(Gdx.files.internal("banana.png")));
         orangeSprite = new Sprite(new Texture(Gdx.files.internal("orange.png")));
         tableSprite = new Sprite(new Texture(Gdx.files.internal("mesa.png")));
-        buttonImg = new Sprite(new Texture(Gdx.files.internal("button.png")));
+
+        //HUD
+        header = new Texture(Gdx.files.internal("header.png"));
+
+        lifeBar = new Texture[2];
+        lifeBar[0] = new Texture(Gdx.files.internal("lifeBar.png"));
+        lifeBar[1] = new Texture(Gdx.files.internal("lifeBarRemove.png"));
+
+        background = new Texture(Gdx.files.internal("background.png"));
+        //minigame2
+        fruitBox = new Texture(Gdx.files.internal("minigame2/boxFruit.png"));
+        handle = new Texture(Gdx.files.internal("minigame2/handle.png"));
+        temperatureBar = new Texture(Gdx.files.internal("minigame2/temperatureBar.png"));
     }
 
     public static Assets getInstance(){
@@ -122,12 +140,6 @@ public class Assets {
         playerLeft = new Animation<TextureRegion>(0.25f, playerLeftFrames);
 
 
-    }
-
-    private Animation<TextureRegion> loadCloudAnimation(){
-        Array<TextureAtlas.AtlasRegion> regions = cloudAtlas.findRegions("cloud");
-        Animation<TextureRegion> animation = new Animation(0.5f,regions);
-        return animation;
     }
 
     private void loadPlayerShoot(){
