@@ -16,7 +16,7 @@ public abstract class BaseMinigame extends GameObject {
 
     protected ArrayList<GameObject> objectsOfLevel;
     protected WorldController wc;
-    private BaseButton buttonBackToMenu;
+    protected BaseButton buttonBackToMenu;
 
     BitmapFont text;
     BitmapFont currentTime;
@@ -37,10 +37,18 @@ public abstract class BaseMinigame extends GameObject {
         text.setColor(Color.WHITE);
         currentTime = new BitmapFont();
         currentTime.setColor(Color.WHITE);
-        buttonBackToMenu = new BaseButton("BACK", wc, new Vector2(-8,3.3f),new Vector2(2,1.5f)){
+        buttonBackToMenu = new BaseButton("B A C  K", wc, new Vector2(-8,3.3f),new Vector2(2,1.5f)){
             @Override
             public void buttonClicked() {
                 wC.changeScene(WorldController.Scene.Menu);
+            }
+
+            @Override
+            public void render(SpriteBatch batch) {
+                batch.draw(buttonImage, position.x, position.y, dimension.x, dimension.y);
+                font.setColor(Color.WHITE);
+                font.getData().setScale(0.05f,0.05f);
+                font.draw(batch, buttonText, position.x+dimension.x/5, position.y+dimension.y*2/3);
             }
         };
         objectsOfLevel.add(buttonBackToMenu);
@@ -93,7 +101,8 @@ public abstract class BaseMinigame extends GameObject {
     }
 
     public void reset(){
-
+        wc.setCurrentLife(10);
+        life = Constants.TOTAL_LIFE;
     }
 
     public void getInputDown(int keyCode)
@@ -103,6 +112,18 @@ public abstract class BaseMinigame extends GameObject {
 
     public void getInputUp(int keyCode)
     {
+
+    }
+
+    public void getButtonUp(int buttonCode){
+
+    }
+
+    public void getButtonDown(int buttonCode){
+
+    }
+
+    public void getAxis(int index, int axis, float value){
 
     }
 }

@@ -1,6 +1,7 @@
 package com.badlogic.drop;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
@@ -36,6 +37,11 @@ public class Assets {
     public Sprite tableSprite;
     public Sprite clientTable;
 
+    //Music
+    public Music bgMusic;
+    public Music bgMusic2;
+    public Music bgMusic4;
+
 
     private Assets(){
         appleSprite = new Sprite(new Texture(Gdx.files.internal("apple.png")));
@@ -62,6 +68,11 @@ public class Assets {
         temperatureBar[1] = new Texture(Gdx.files.internal("minigame2/temperatureBar.png"));
 
         truck = new Texture(Gdx.files.internal("minigame2/truck.png"));
+
+        //load music
+        bgMusic = Gdx.audio.newMusic(Gdx.files.internal("BGMusic.mp3"));
+        bgMusic2 = Gdx.audio.newMusic(Gdx.files.internal("BGMusicM2.mp3"));
+        bgMusic4 = Gdx.audio.newMusic(Gdx.files.internal("BGMusicM4.mp3"));
     }
 
     public static Assets getInstance(){
@@ -84,4 +95,13 @@ public class Assets {
                 return null;
         }
     }
+
+    /*private void createFonts() {
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(""));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 12;
+        font = generator.generateFont(parameter);
+        parameter.size = 24;
+
+    }*/
 }

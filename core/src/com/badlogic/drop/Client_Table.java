@@ -11,6 +11,8 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Client_Table extends GameObject {
 
+    public Client_Table next = this;
+
     private Sprite sprite;
     private int foodRequestedType = -1;
     private Sprite foodRequested = null;
@@ -54,7 +56,6 @@ public class Client_Table extends GameObject {
                 timeToNextClient = timeToComeBack;
                 foodRequested = null;
                 mGame.damage();
-                System.out.printf("Leaving, %s\n",name);
             }
         }
         else if(coming){
@@ -62,7 +63,6 @@ public class Client_Table extends GameObject {
             if(timeToNextClient <= 0){
                 coming = false;
                 askForFood();
-                System.out.printf("New client, %s\n",name);
             }
         }
     }
@@ -104,8 +104,12 @@ public class Client_Table extends GameObject {
         foodRequested.setPosition(position.x-foodRequested.getWidth()/2+foodOffset.x,position.y-foodRequested.getHeight()/2+foodOffset.y);
     }
 
-    public boolean checkDrop(Restaurant_Food drop){
+    public boolean checkDropInBounds(Restaurant_Food drop){
         return bounds.overlaps(drop.bounds)  && foodRequestedType == drop.mType.ordinal();
+    }
+
+    public boolean checkDrop(Restaurant_Food drop){
+        return foodRequestedType == drop.mType.ordinal();
     }
 
     public void serveFood(){

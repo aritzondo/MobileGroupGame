@@ -3,11 +3,15 @@ package com.badlogic.drop;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.controllers.Controller;
+import com.badlogic.gdx.controllers.ControllerListener;
+import com.badlogic.gdx.controllers.Controllers;
+import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
-public class WorldController implements InputProcessor {
+public class WorldController implements InputProcessor , ControllerListener {
 
     protected OrthographicCamera camera;
 
@@ -17,6 +21,9 @@ public class WorldController implements InputProcessor {
     boolean draging = false;
     boolean released = false;
     int currentLife = Constants.TOTAL_LIFE;
+
+    //Controller
+    Controller mController = null;
 
     public enum Scene
     {
@@ -37,6 +44,7 @@ public class WorldController implements InputProcessor {
     public WorldController(){
         scene = Scene.Menu;
         Gdx.input.setInputProcessor(this);
+        Controllers.addListener(this);
         init();
     }
 
@@ -111,7 +119,27 @@ public class WorldController implements InputProcessor {
     }
 
     public void changeScene(Scene scene){
-         this.scene = scene;
+
+        this.scene = scene;
+        switch (scene){
+            case Menu:
+                AudioManager.getInstance().play(AudioManager.Sounds.bgMusic);
+                break;
+            case Minigame1:
+                minigame1.reset();
+                break;
+            case Minigame2:
+                minigame2.reset();
+                AudioManager.getInstance().play(AudioManager.Sounds.bgMusic2);
+                break;
+            case Minigame3:
+                minigame3.reset();
+                break;
+            case Minigame4:
+                minigame4.reset();
+                AudioManager.getInstance().play(AudioManager.Sounds.bgMusic4);
+                break;
+        }
     }
 
    @Override
@@ -207,6 +235,94 @@ public class WorldController implements InputProcessor {
 
     @Override
     public boolean scrolled(int amount) {
+        return false;
+    }
+
+    /*
+     *Controller listener
+     */
+
+    @Override
+    public void connected(Controller controller) {
+        if(mController == null){
+            mController = controller;
+        }
+    }
+
+    @Override
+    public void disconnected(Controller controller) {
+        if(controller.equals(mController)){
+            mController = null;
+        }
+    }
+
+    @Override
+    public boolean buttonDown(Controller controller, int buttonCode) {
+        if(scene == Scene.Minigame2)
+            {
+                minigame2.getButtonDown(buttonCode);
+            }
+            if(scene == Scene.Minigame4)
+            {
+                minigame4.getButtonDown(buttonCode);
+            }
+
+        switch (buttonCode){
+            case 4:
+                changeScene(Scene.Minigame2);
+                break;
+            case 5:
+                changeScene(Scene.Minigame4);
+                break;
+         }
+        return true;
+    }
+
+    @Override
+    public boolean buttonUp(Controller controller, int buttonCode) {
+        if(controller.equals(mController)){
+            if(scene == Scene.Minigame2)
+            {
+                minigame2.getButtonUp(buttonCode);
+            }
+            if(scene == Scene.Minigame4)
+            {
+                minigame4.getButtonUp(buttonCode);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean axisMoved(Controller controller, int axisCode, float value) {
+        int index = Controllers.getControllers().indexOf(controller,true);
+        if (scene == Scene.Minigame2) {
+                minigame2.getAxis(index,axisCode, value);
+            }
+            if (scene == Scene.Minigame4) {
+                minigame4.getAxis(index,axisCode, value);
+            }
+
+        return true;
+    }
+
+    @Override
+    public boolean povMoved(Controller controller, int povCode, PovDirection value) {
+        return false;
+    }
+
+    @Override
+    public boolean xSliderMoved(Controller controller, int sliderCode, boolean value) {
+        return false;
+    }
+
+    @Override
+    public boolean ySliderMoved(Controller controller, int sliderCode, boolean value) {
+        return false;
+    }
+
+    @Override
+    public boolean accelerometerMoved(Controller controller, int accelerometerCode, Vector3 value) {
         return false;
     }
 }

@@ -19,7 +19,7 @@ public class MainMenu extends BaseMinigame {
             public void buttonClicked()
             {
                 super.buttonClicked();
-                wC.scene = WorldController.Scene.Minigame2;
+                wC.changeScene(WorldController.Scene.Minigame1);
             }
         };
         objectsOfLevel.add(play);
@@ -34,6 +34,9 @@ public class MainMenu extends BaseMinigame {
             }
         };
         objectsOfLevel.add(exit);
+
+        //Start the music
+        AudioManager.getInstance().play(AudioManager.Sounds.bgMusic);
     }
 
 

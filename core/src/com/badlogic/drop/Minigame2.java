@@ -101,13 +101,6 @@ public class Minigame2 extends BaseMinigame {
         }
     }
 
-    @Override
-    public void reset() {
-        super.reset();
-        wc.setCurrentLife(10);
-        life = Constants.TOTAL_LIFE;
-    }
-
     public int random (int range)
     {
         return random.nextInt(range + 1);
@@ -116,5 +109,15 @@ public class Minigame2 extends BaseMinigame {
     float random (float start, float end)
     {
         return start + random.nextFloat() * (end - start);
+    }
+
+    @Override
+    public void getAxis(int index, int axis, float value) {
+        if(axis == 0 && index == 1){
+            handle.addSpeed(0,-value * addSpeed);
+        }
+        if(axis == 1 && index == 0){
+            fruitBox.addSpeed(value * addSpeed,0);
+        }
     }
 }

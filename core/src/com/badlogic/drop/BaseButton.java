@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class BaseButton extends GameObject {
 
-    private Texture buttonImage;
+    protected Texture buttonImage;
     public String buttonText;
     public BitmapFont font;
     protected WorldController wC;
@@ -31,7 +31,7 @@ public class BaseButton extends GameObject {
     public void render(SpriteBatch batch) {
         batch.draw(buttonImage, position.x, position.y, dimension.x, dimension.y);
         font.setColor(Color.WHITE);
-        font.getData().setScale(dimension.x*0.01f, dimension.y*0.02f);
+        font.getData().setScale(0.1f,0.1f);
         font.draw(batch, buttonText, position.x+dimension.x/5, position.y+dimension.y*2/3);
     }
 

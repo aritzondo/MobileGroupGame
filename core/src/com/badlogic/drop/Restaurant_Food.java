@@ -1,8 +1,10 @@
 package com.badlogic.drop;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 
 
 public class Restaurant_Food extends GameObject {
@@ -15,6 +17,9 @@ public class Restaurant_Food extends GameObject {
     private WorldController wc;
     private boolean clicked = false;
     private Minigame4 mGame;
+
+    public Vector3 colorTint = new Vector3(1,1,1);
+    public Restaurant_Food next = this;
 
     Restaurant_Food(String name, float x, float y, float width, float height) {
         super(name, x, y, width, height);
@@ -55,7 +60,7 @@ public class Restaurant_Food extends GameObject {
     //check if can be drop on a table or return it to the initial position
     public void dropFood(){
         for (Client_Table client : mGame.clients){
-            if(client.checkDrop(this)){
+            if(client.checkDropInBounds(this)){
                 dropFood(client);
                 break;
             }
@@ -71,8 +76,9 @@ public class Restaurant_Food extends GameObject {
 
     @Override
     public void render(SpriteBatch batch) {
-        if(active)
+        if(active) {
             sprite.draw(batch);
+        }
     }
 
     private void resizeSprite(){
@@ -101,5 +107,14 @@ public class Restaurant_Food extends GameObject {
         mType = type;
 
         active = true;
+    }
+
+    public void setScale(float scale){
+        float scaleX = scale*sprite.getWidth();
+        float scaleY = scale*sprite.getHeight();
+
+        sprite.setScale(scaleX, scaleY);
+
+        sprite.setPosition(position.x-sprite.getWidth()/2,position.y-sprite.getHeight()/2);
     }
 }
