@@ -91,6 +91,14 @@ public class Minigame2 extends BaseMinigame {
         {
             fruitBox.addSpeed(addSpeed,0);
         }
+        if(keyCode == Keys.W)
+        {
+            handle.addSpeed(0,addSpeed);
+        }
+        if(keyCode == Keys.S)
+        {
+            handle.addSpeed(0,-addSpeed);
+        }
 
     }
 
