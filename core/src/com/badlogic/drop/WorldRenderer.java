@@ -21,8 +21,10 @@ public class WorldRenderer {
         this.wc = wc;
         batch = new SpriteBatch();
         font = new BitmapFont();
+
         camera = new OrthographicCamera(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
         init();
+        font.getData().setScale(1/Constants.VIEWPORT_WIDTH);
     }
 
     private void init(){

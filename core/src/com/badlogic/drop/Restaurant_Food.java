@@ -38,17 +38,12 @@ public class Restaurant_Food extends GameObject {
             super.update(delta);
             if (!clicked) {
                 if (wc.touching && bounds.contains(wc.currentTouch.x, wc.currentTouch.y)) {
-                    System.out.printf("Clicked\n");
-                    System.out.printf("My pos x:%f,y:%f\n", bounds.x, bounds.y);
-                    System.out.printf("Mouse pos x:%f,y:%f\n", wc.currentTouch.x, wc.currentTouch.y);
                     clicked = true;
                 }
             } else {
                 if (wc.touching || wc.draging) {
-                    System.out.printf("Dragged\n");
                     setPosition(wc.currentTouch);
                 } else if (wc.released) {
-                    System.out.printf("Released\n");
                     clicked = false;
                     dropFood();
                 }
@@ -71,6 +66,7 @@ public class Restaurant_Food extends GameObject {
     public void dropFood(Client_Table client){
         clicked = false;
         active = false;
+        client.serveFood();
     }
 
     @Override

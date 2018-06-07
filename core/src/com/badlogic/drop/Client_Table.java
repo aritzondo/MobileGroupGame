@@ -2,11 +2,8 @@ package com.badlogic.drop;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-
-import java.util.Random;
 
 /**
  * Created by aritz on 06/06/2018.
@@ -20,9 +17,9 @@ public class Client_Table extends GameObject {
     private Vector2 foodOffset = new Vector2(0,1.5f);
     private Minigame4 mGame;
     //
-    private float timeToLeave = 30;
+    private float timeToLeave = 5;
     private float timeLeft;
-    private float timeToComeBack= 15;
+    private float timeToComeBack= 5;
     private float timeToNextClient = 0;
     private boolean waiting = true;
     private boolean coming = false;
@@ -52,7 +49,18 @@ public class Client_Table extends GameObject {
         if(waiting){
             timeLeft -= delta;
             if(timeLeft <= 0){
+                coming = true;
+                waiting = false;
+                timeToNextClient = timeToComeBack;
+                foodRequested = null;
 
+            }
+        }
+        else if(coming){
+            timeToNextClient -= delta;
+            if(timeToNextClient <= 0){
+                coming = false;
+                askForFood();
             }
         }
     }
@@ -79,7 +87,6 @@ public class Client_Table extends GameObject {
         foodRequestedType = MathUtils.random(0, Minigame4.FoodType.Count.ordinal()-1);
         Sprite food = Assets.getInstance().getFoodOfType(Minigame4.FoodType.values()[foodRequestedType]);
         foodRequested = new Sprite(food);
-        System.out.printf("I want %d",foodRequestedType);
         resizeFood();
         timeLeft = timeToLeave;
         waiting = true;
@@ -99,7 +106,10 @@ public class Client_Table extends GameObject {
     }
 
     public void serveFood(){
-
+        waiting = false;
+        coming = true;
+        timeToNextClient = timeToComeBack;
+        foodRequested = null;
     }
 
 }
