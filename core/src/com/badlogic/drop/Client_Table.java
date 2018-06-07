@@ -17,7 +17,7 @@ public class Client_Table extends GameObject {
     private Vector2 foodOffset = new Vector2(0,1.5f);
     private Minigame4 mGame;
     //
-    private float timeToLeave = 5;
+    private float timeToLeave = 6;
     private float timeLeft;
     private float timeToComeBack= 5;
     private float timeToNextClient = 0;
@@ -29,7 +29,7 @@ public class Client_Table extends GameObject {
         dimension = new Vector2(width, height);
         this.sprite = new Sprite(sprite);
         resizeSprite();
-        bounds = sprite.getBoundingRectangle();
+        bounds = this.sprite.getBoundingRectangle();
         mGame = game;
         timeLeft = timeToLeave;
         askForFood();
@@ -53,7 +53,8 @@ public class Client_Table extends GameObject {
                 waiting = false;
                 timeToNextClient = timeToComeBack;
                 foodRequested = null;
-
+                mGame.damage();
+                System.out.printf("Leaving, %s\n",name);
             }
         }
         else if(coming){
@@ -61,6 +62,7 @@ public class Client_Table extends GameObject {
             if(timeToNextClient <= 0){
                 coming = false;
                 askForFood();
+                System.out.printf("New client, %s\n",name);
             }
         }
     }
@@ -81,6 +83,7 @@ public class Client_Table extends GameObject {
 
     private void setSpritePosition(){
         sprite.setPosition(position.x-sprite.getWidth()/2,position.y-sprite.getHeight()/2);
+        bounds = sprite.getBoundingRectangle();
     }
 
     private void askForFood(){
@@ -110,6 +113,7 @@ public class Client_Table extends GameObject {
         coming = true;
         timeToNextClient = timeToComeBack;
         foodRequested = null;
+        System.out.printf("Served, %s\n",name);
     }
 
 }

@@ -16,7 +16,7 @@ public class Minigame4 extends BaseMinigame {
     public ArrayList<Client_Table> clients = new ArrayList<Client_Table>();
     public ArrayList<Restaurant_Food> food = new ArrayList<Restaurant_Food>();
 
-    private float foodSpawnTime = 5;
+    private float foodSpawnTime = 4;
     private float nextSpawnTime = 0;
 
     private int maxFoodOnTable = 3;
@@ -47,6 +47,14 @@ public class Minigame4 extends BaseMinigame {
         if(nextSpawnTime <= 0){
             spawnFood();
             nextSpawnTime = foodSpawnTime;
+        }
+    }
+
+    @Override
+    public void checkDead() {
+        if(life <= 0)
+        {
+            wc.changeScene(WorldController.Scene.Menu);
         }
     }
 
