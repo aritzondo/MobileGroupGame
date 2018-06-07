@@ -21,7 +21,17 @@ public abstract class BaseMinigame extends GameObject {
     protected boolean nextLevel = false;
 
     BitmapFont text;
+
     BitmapFont currentTime;
+
+    protected int life = Constants.TOTAL_LIFE;
+    public void setLives(int lives){this.life = lives;}
+    public int getLives(){return life;}
+    public void damage()
+    {
+        life--;
+        wc.setCurrentLife(life);
+    }
 
     BaseMinigame(WorldController wc){
         this.wc = wc;
@@ -65,17 +75,9 @@ public abstract class BaseMinigame extends GameObject {
 
     }
 
-    private void levelUpdate()
-    {
-
-    }
-
     public void checkDead()
     {
-        if(life <= 0)
-        {
-            //System.out.print("muero");//muero y siguiente nivel
-        }
+
     }
 
     public void GUI(SpriteBatch batch)
@@ -83,8 +85,6 @@ public abstract class BaseMinigame extends GameObject {
         batch.draw(Assets.getInstance().header, -9, 3.2f, 22, 1.8f);
         batch.draw(Assets.getInstance().lifeBar[0], -3, 3.5f, 7f, 1.1f);
         batch.draw(Assets.getInstance().lifeBar[1], -3, 3.5f, 7f*(Constants.TOTAL_LIFE - wc.getCurrentLife())/Constants.TOTAL_LIFE, 1.1f);
-
-        System.out.print(wc.getCurrentLife());
 
         buttonBackToMenu.render(batch);
 

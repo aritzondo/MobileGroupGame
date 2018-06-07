@@ -24,16 +24,6 @@ public abstract class GameObject {
 
     WorldController wc;
 
-    protected int life = Constants.TOTAL_LIFE;
-    public void setLives(int lives){this.life = lives;}
-    public int getLives(){return life;}
-    public void damage()
-    {
-        life--;
-        wc.setCurrentLife(life);
-    }
-    public void damage(int takeOutlives){this.life -= takeOutlives;}
-
     protected int score = 0;
 
     public GameObject(String name,float x, float y){

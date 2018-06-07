@@ -141,7 +141,6 @@ public class WorldController implements InputProcessor {
        if(keycode == (Keys.M))
        {
            changeScene(Scene.Minigame2);
-           System.out.print("presiono m");
            return true;
        }
        return false;

@@ -14,7 +14,9 @@ public class FruitBox extends GameObject{
     Texture fruitBox;
     int positiXClampedMin;
     int positiXClampedMax;
-    FruitBox(WorldController wc, Vector2 position, Vector2 dimension) {
+    Minigame2 mg;
+    int counterOfRemoveLifes = 0;
+    FruitBox(WorldController wc, Minigame2 mg, Vector2 position, Vector2 dimension) {
         fruitBox = Assets.getInstance().fruitBox;
         this.wc = wc;
         this.position = position;
@@ -22,21 +24,20 @@ public class FruitBox extends GameObject{
 
         positiXClampedMin = -6;
         positiXClampedMax = -2;
+
+        this.mg = mg;
     }
 
     @Override
     public void update(float delta) {
         super.update(delta);
+        counterOfRemoveLifes++;
 
         position.x = MathUtils.clamp(position.x, positiXClampedMin, positiXClampedMax);
-        if(position.x <= positiXClampedMin || position.x >= positiXClampedMax)
+        if((position.x <= positiXClampedMin || position.x >= positiXClampedMax) && counterOfRemoveLifes > 50)
         {
-            damage();
-        }
-
-        if(life <= 0)
-        {
-            wc.changeScene(WorldController.Scene.Minigame3);
+            mg.damage();
+            counterOfRemoveLifes = 0;
         }
 
     }

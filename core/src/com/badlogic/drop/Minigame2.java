@@ -4,15 +4,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.utils.reflect.Constructor;
 import java.util.Random;
-/**
- * Created by aritz on 22/05/2018.
- */
+
 
 public class Minigame2 extends BaseMinigame {
 
-    WorldController wc;
     FruitBox fruitBox;
     Handle handle;
     Truck truck;
@@ -20,9 +16,11 @@ public class Minigame2 extends BaseMinigame {
     float addSpeed;
     Random random;
     int counterTemperature = 0;
+    int counterOfRandomMovement = 0;
+
     Minigame2(WorldController wc) {
         super(wc);
-        fruitBox = new FruitBox(wc, new Vector2(-4,-3), new Vector2(3,3));
+        fruitBox = new FruitBox(wc, this, new Vector2(-4,-3), new Vector2(3,3));
         handle = new Handle(wc, new Vector2(3.7f,-3), new Vector2(4,3));
         truck = new Truck(wc, new Vector2(-8,-5), new Vector2(11,8));
         objectsOfLevel.add(fruitBox);
@@ -43,13 +41,24 @@ public class Minigame2 extends BaseMinigame {
     public void update(float elpasedTime) {
         super.update(elpasedTime);
         counterTemperature++;
+        int counterOfRandomMovement = 0;
 
-        if(counterTemperature > 60)
+        if(counterTemperature > 80)
         {
             counterTemperature = 0;
             currentTemperature = random(8);
         }
 
+
+
+    }
+
+    @Override
+    public void checkDead() {
+        if(life <= 0)
+        {
+            wc.changeScene(WorldController.Scene.Minigame3);
+        }
     }
 
     @Override
@@ -57,31 +66,13 @@ public class Minigame2 extends BaseMinigame {
         super.getInputDown(keyCode);
         if(keyCode == Keys.A)
         {
-            System.out.print("AAAAA  ");
             fruitBox.addSpeed(-addSpeed,0);
         }
         if(keyCode == Keys.D)
         {
-            System.out.print("DDDD  ");
             fruitBox.addSpeed(addSpeed,0);
         }
     }
-/*
-    @Override
-    public void getInputUp(int keyCode) {
-        super.getInputUp(keyCode);
-        if(keyCode == Keys.A)
-        {
-            System.out.print("AAAAA  ");
-            fruitBox.addSpeed(addSpeed,0);
-        }
-        if(keyCode == Keys.D)
-        {
-            System.out.print("DDDD  ");
-            fruitBox.addSpeed(-addSpeed,0);
-        }
-
-    }*/
 
     public int random (int range)
     {
