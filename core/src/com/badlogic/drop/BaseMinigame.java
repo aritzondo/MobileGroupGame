@@ -17,11 +17,8 @@ public abstract class BaseMinigame extends GameObject {
     protected ArrayList<GameObject> objectsOfLevel;
     protected WorldController wc;
     private BaseButton buttonBackToMenu;
-    protected float dt = 0;
-    protected boolean nextLevel = false;
 
     BitmapFont text;
-
     BitmapFont currentTime;
 
     protected int life = Constants.TOTAL_LIFE;
@@ -47,9 +44,6 @@ public abstract class BaseMinigame extends GameObject {
             }
         };
         objectsOfLevel.add(buttonBackToMenu);
-
-        this.dt = 0;
-
     }
 
     @Override
@@ -65,7 +59,6 @@ public abstract class BaseMinigame extends GameObject {
     @Override
     public void update(float elpasedTime)
     {
-        dt++;
         checkDead();
 
         for(int i = 0; i < objectsOfLevel.size(); i++)

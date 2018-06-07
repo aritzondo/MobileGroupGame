@@ -12,5 +12,7 @@ class Constants {
 
     //minigame2
     public static float FRUITBOX_SPEED = 2;
+    public static float FRUITBOX_SPEED_RANDOM = 4;
     public static float TOTAL_TEMPERATURE = 8;
+
 }
