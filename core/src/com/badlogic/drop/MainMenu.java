@@ -19,7 +19,7 @@ public class MainMenu extends BaseMinigame {
             public void buttonClicked()
             {
                 super.buttonClicked();
-                wC.scene = WorldController.Scene.Minigame4;
+                wC.scene = WorldController.Scene.Minigame2;
             }
         };
         objectsOfLevel.add(play);

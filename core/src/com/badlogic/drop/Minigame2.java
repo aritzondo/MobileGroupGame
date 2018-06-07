@@ -99,7 +99,6 @@ public class Minigame2 extends BaseMinigame {
         {
             handle.addSpeed(0,-addSpeed);
         }
-
     }
 
     @Override
