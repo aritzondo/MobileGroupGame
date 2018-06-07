@@ -1,16 +1,11 @@
 package com.badlogic.drop;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
-
-/**
- * Created by Cristina on 06/06/2018.
- */
 
 public abstract class BaseMinigame extends GameObject {
 
@@ -88,16 +83,6 @@ public abstract class BaseMinigame extends GameObject {
         batch.draw(Assets.getInstance().lifeBar[1], -3, 3.5f, 7f*(Constants.TOTAL_LIFE - wc.getCurrentLife())/Constants.TOTAL_LIFE, 1.1f);
 
         buttonBackToMenu.render(batch);
-
-
-        //text
-        ///text.draw(batch, "Minigame: " + wc.scene, -6, 3.3f);
-        //text.getData().setScale(Gdx.graphics.getWidth()*0.0015f, Gdx.graphics.getHeight()*0.0015f);
-
-        //
-
-        //currentTime.getData().setScale(currentTime.getScaleX()/10);
-        //currentTime.draw(batch, "Time: "+((int)dt), 0, 3.5f);
     }
 
     public void reset(){

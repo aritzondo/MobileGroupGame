@@ -6,9 +6,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-/**
- * Created by Cristina on 06/06/2018.
- */
 
 public class FruitBox extends GameObject{
 

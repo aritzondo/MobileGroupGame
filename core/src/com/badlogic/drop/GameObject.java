@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public abstract class GameObject {
 
-    float rotation;
+    protected String name;
     protected float time=0.0f;
     protected ArrayList<Animation<TextureRegion>> animations = new ArrayList<Animation<TextureRegion>>(2);
     protected Animation<TextureRegion> actualAnimation = null;
@@ -73,14 +73,6 @@ public abstract class GameObject {
         return position.y;
     }
 
-    public float getWidth() {
-        return dimension.x;
-    }
-
-    public float getHeight() {
-        return dimension.y;
-    }
-
     public String getName() {
         return name;
     }
@@ -97,58 +89,10 @@ public abstract class GameObject {
         position = new Vector2(x,y);
     }
 
-    public void setWidth(float width) {
-        dimension.x = width;
-    }
-
-    public void setHeight(float height) {
-        dimension.y = height;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setOrigin(float x, float y){
-        origin = new Vector2(x,y);
-    }
-
-    public Rectangle getBoundaries(){
-        return bounds;
-    }
-
-    public int addAnimation(TextureRegion tr, float time){
-        addAnimation(new Animation<TextureRegion>(time, tr));
-        return animations.size();
-    }
-
-    public int addAnimation(Animation<TextureRegion> animation){
-        animations.add(animation);
-        if(animIndex < 0){
-            animIndex = 0;
-            actualAnimation = animations.get(animIndex);
-        }
-        return animations.size();
-    }
-
-    public void changeAnimation(int index){
-        animIndex = index;
-        actualAnimation = animations.get(index);
-        time = 0.0f;
-    }
-
-    public void setLoop(boolean loop, int animIndex){
-        if(loop){
-            animations.get(animIndex).setPlayMode(Animation.PlayMode.LOOP);
-        }
-        else{
-            animations.get(animIndex).setPlayMode(Animation.PlayMode.NORMAL);
-        }
-    }
-
-    public void setSpeed(Vector2 newSpeed){
-        speed = newSpeed;
-    }
     public void addSpeed(float x, float y){
         speed.add(x,y);
     }
@@ -157,15 +101,7 @@ public abstract class GameObject {
         return bounds.contains(point.x,point.y);
     }
 
-    protected String name;
     public GameObject(){
         bounds = new Rectangle();
     }
-
-
-    public Rectangle getBounds(){
-        bounds.set(position.x,position.y,dimension.x,dimension.y);
-        return bounds;
-    }
-
 }

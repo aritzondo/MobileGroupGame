@@ -95,13 +95,4 @@ public class Assets {
                 return null;
         }
     }
-
-    /*private void createFonts() {
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(""));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 12;
-        font = generator.generateFont(parameter);
-        parameter.size = 24;
-
-    }*/
 }

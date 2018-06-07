@@ -29,7 +29,7 @@ public class Minigame4 extends BaseMinigame {
 
     Minigame4(WorldController wc) {
         super(wc);
-        Restaurant_Table table = new Restaurant_Table("table",0,-5,16,4,Assets.getInstance().tableSprite,this);
+        Restaurant_Table table = new Restaurant_Table("table",0,-5,16,4,Assets.getInstance().tableSprite);
         objectsOfLevel.add(table);
         iniFood();
         iniClients();

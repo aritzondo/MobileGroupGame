@@ -5,10 +5,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
-/**
- * Created by aritz on 06/06/2018.
- */
-
 public class Client_Table extends GameObject {
 
     public Client_Table next = this;
@@ -74,11 +70,6 @@ public class Client_Table extends GameObject {
         sprite.setScale(scaleX, scaleY);
 
         sprite.setPosition(position.x-sprite.getWidth()/2,position.y-sprite.getHeight()/2);
-    }
-
-    public void setPosition(Vector2 newPos){
-        super.setPosition(newPos.x, newPos.y);
-        setSpritePosition();
     }
 
     private void setSpritePosition(){

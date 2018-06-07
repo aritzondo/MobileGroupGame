@@ -11,16 +11,13 @@ public class Restaurant_Table extends GameObject {
 
     public Sprite sprite;
 
-    private Minigame4 mGame;
-    private ArrayList<Restaurant_Food> food = new ArrayList<Restaurant_Food>();
 
-    Restaurant_Table(String name, float x, float y, float width, float height, Sprite sprite,Minigame4 game){
+    Restaurant_Table(String name, float x, float y, float width, float height, Sprite sprite){
         super(name, x, y);
         dimension = new Vector2(width, height);
         this.sprite = new Sprite(sprite);
         resizeSprite();
         bounds = sprite.getBoundingRectangle();
-        mGame = game;
     }
 
     @Override
